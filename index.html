@@ -170,6 +170,11 @@
 
     <main>
         <section>
+            <section>
+                <script>
+                    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="C-E5PSmHpZIzdFow-crzR";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+                </script>
+            </section>
             <section id="hobbies" class="section">
                 <h2>HOBBIES</h2>
                 <p>Welcome to my hobbies section! Here are the activities I am passionate about and enjoy in my free time:</p>
