@@ -1,102 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <link rel="website icon" type="jpeg" href="profile.jpeg">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-            text-align: center;
-            background-color: #f8f8f8;
-        }
-
-        h1 {
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            margin: 10px auto;
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-            width: 250px;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .button:active {
-            background-color: #3e8e41;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .container {
-            margin: 30px auto;
-            max-width: 600px;
-        }
-
-        .button-home {
-            margin-top: 40px;
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: white;
-            background-color: #4CAF50;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .button-home:hover {
-            background-color: #45a049;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-                text-align: center;
-                padding: 0px 0;
-                background: black;
-                color: white;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Stanley Makanga</title>
+  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <h1>CONTACT</h1>
-    <div class="container">
-        <a href="mailto:stanleymakanga45@gmail.com" class="button">Email Me</a>
-        <a href="https://www.instagram.com/7_stanley7?igsh=MXZlMGJhNHA3NmpsaQ==" target="_blank" class="button">Follow on Instagam</a>
-        <a href="https://wa.me/254746640048" target="_blank" class="button">Whatsapp contact</a>
+    <header>
+        <nav>
+          <div class="logo">
+            <a href="index.html">Stanley Makanga</a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </nav>
+      </header>
+  <!-- Hero Section (Same as Homepage) -->
+  <section id="hero" class="hero animate-fadeIn">
+    <div class="hero-content">
+        <div class="hero-content">
+            <a href="index.html"><img style="border-radius: 50%; width: 100px; height: 110px" src="stanleymakanga7.jpg" alt="Stanley"></a>
+        </div>
+      <h1>Stanley Makanga</h1>
+      <p>Web Developer | Designer | Programmer</p>
+      <p>Passionate about building innovative solutions and solving problems through code.</p>
+      <a href="index.html#portfolio" class="cta-button">View Portfolio</a>
+      <a href="index.html#contact" class="cta-button secondary">Hire Me</a>
     </div>
-   <section>
-    <a href="index.html" class="button-home">Back to Home</a>
-   </section>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="animate-fadeIn">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <div class="contact-options">
+        <div class="contact-item">
+          <a href="mailto:stanleymakanga45@gmail.com" class="contact-link">
+            <i class="fas fa-envelope contact-icon"></i>
+            <span>Email Me</span>
+          </a>
+        </div>
+        <div class="contact-item">
+          <a href="tel:+254721991529" class="contact-link">
+            <i class="fas fa-phone contact-icon"></i>
+            <span>Call Me</span>
+          </a>
+        </div>
+        <div class="contact-item">
+          <a href="https://wa.me/254721991529" target="_blank" class="contact-link">
+            <i class="fab fa-whatsapp contact-icon"></i>
+            <span>Chat with Me</span>
+          </a>
+        </div>
+      </div>
+      <form id="contact-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      <!-- Quick Links -->
+      <div class="footer-section quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="services.html">services</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="footer-section social-media">
+        <h3>Follow Me</h3>
+        <div class="social-icons">
+            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
+                <i class="fab fa-facebook"></i>
+            </a>
+          <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Stanley Makanga. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
-
-<footer>
-<p>&copy; 2025 Stanley Makanga. All Rights Reserved.</p>
-</footer>
-
 </html>
