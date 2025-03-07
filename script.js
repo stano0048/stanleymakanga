@@ -102,3 +102,39 @@ function toggleAnswer(id) {
     }
   }
 
+// Contact Form Submission
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Prevent the form from submitting the default way
+
+  // Get form data
+  const formData = new FormData(contactForm);
+
+  // Send form data to Formspree or your backend
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      // Display success message
+      formStatus.textContent = 'Thank you! Your message has been sent.';
+      formStatus.style.color = '#28a745'; // Green color for success
+      contactForm.reset(); // Clear the form
+    } else {
+      // Display error message
+      formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+      formStatus.style.color = '#dc3545'; // Red color for error
+    }
+  } catch (error) {
+    // Display error message
+    formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+    formStatus.style.color = '#dc3545'; // Red color for error
+  }
+});
