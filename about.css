@@ -287,3 +287,26 @@ body {
       text-align: center;
     }
   }
+
+  /* Footer Bottom Styles */
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-bottom a {
+  color: #d0dfee;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
