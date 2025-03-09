@@ -9,22 +9,39 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-          <div class="logo">
-            <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-            <li><a href="skills">Skills</a></li>
-            <li><a href="blog">Blog</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a href="services">Services</a></li>
-            <li><a href="achievements">Achievements</a></li>
-            <li><a href="faq">FAQ</a></li>
-          </ul>
-        </nav>
-      </header>
+    <!-- Header with Quick Links -->
+<header>
+  <nav>
+    <div class="logo">
+        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
+    </div>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" aria-label="Toggle navigation">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li><a href="about">About Me</a></li>
+      <li><a href="skills">Skills</a></li>
+      <li><a href="blog">Blog</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="services">Services</a></li>
+      <li><a href="achievements">Achievements</a></li>
+      <li><a href="faq">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  // Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active'); // Toggle the 'active' class
+});
+</script>
   <!-- Hero Section  -->
   <section id="hero" class="hero animate-fadeIn">
     <div class="hero-content">
