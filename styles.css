@@ -683,6 +683,43 @@ nav {
     background-color: #0056b3; /* Change button color on hover */
   }
 
+/* 404 Error Section */
+#error-404 {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#error-404 h1 {
+  font-size: 3rem;
+  color: #dc3545; /* Red color for error */
+  margin-bottom: 20px;
+}
+
+#error-404 p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#error-404 ul {
+  list-style: none;
+  padding: 0;
+}
+
+#error-404 ul li {
+  margin-bottom: 10px;
+}
+
+#error-404 ul li a {
+  color: #007BFF;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+#error-404 ul li a:hover {
+  text-decoration: underline;
+}
+
   /* FAQ Section */
 .faq-grid {
     display: flex;
