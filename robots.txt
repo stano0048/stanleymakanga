@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stanleymakanga.vercel.app/sitemap.xml
