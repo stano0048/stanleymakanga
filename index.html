@@ -1,201 +1,1499 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stanley Makanga - Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanley Makanga | Computer Scientist & Tech Innovator</title>
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.9);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(44, 62, 80, 0.98);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        /* Home Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+        }
+        
+        .home-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+        
+        .home-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .home-content h1 span {
+            color: var(--secondary);
+        }
+        
+        .home-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.9s;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.2s;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .home-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .home-bg-animation div {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-img {
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+        
+        .about-img.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--secondary);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .about-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+        
+        .about-content.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .skills {
+            margin-top: 2rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-category h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        /* Portfolio Section */
+        #portfolio {
+            background-color: var(--light);
+        }
+        
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .portfolio-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .portfolio-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .portfolio-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .portfolio-tag {
+            background-color: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .portfolio-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .portfolio-links a {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-link {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .demo-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .code-link {
+            background-color: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        .code-link:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Blog Section */
+        #blog {
+            background-color: white;
+        }
+        
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .blog-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-img img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+        }
+        
+        /* Services Section */
+        #services {
+            background-color: var(--light);
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .service-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-link {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .service-link:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background-color: white;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+        
+        .contact-info.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-info p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+        
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            color: var(--primary);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-text a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-social a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-social a:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+        
+        .contact-form.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-bottom a {
+  color: #d0dfee;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+        
+        .copyright {
+            margin-bottom: 1rem;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(1000px);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container, .contact-container {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-content, .contact-info, .contact-form {
+                flex: none;
+                width: 100%;
+            }
+            
+            .about-img {
+                margin-bottom: 2rem;
+            }
+            
+            .portfolio-grid, .blog-grid, .services-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .home-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .portfolio-grid, .blog-grid, .services-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .portfolio-filter {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Header with Quick Links -->
-<header>
-  <nav>
-    <div class="logo">
-        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-    </div>
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a href="about">About Me</a></li>
-      <li><a href="skills">Skills</a></li>
-      <li><a href="blog">Blog</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="services">Services</a></li>
-      <li><a href="team">My Team</a></li>
-      <li><a href="achievements">Achievements</a></li>
-      <li><a href="faq">FAQ</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  // Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Toggle the 'active' class
-});
-</script>
-  
-  <!-- Hero Section -->
-  <section id="hero" class="hero animate-fadeIn">
-    <div class="hero-content">
-        <div class="hero-content">
-            <a href="https://stanleymakanga.vercel.app"><img style="border-radius: 50%; width: 100px; height: 110px" src="stanleymakanga7.jpg" alt="Stanley"></a>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Stanley<span> Makanga</span></div>
+        <div class="nav-links">
+            <li><a href="about">About Me</a></li>
+            <li><a href="skills">Skills</a></li>
+            <li><a href="blog">Blog</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="services">Services</a></li>
+            <li><a href="team">My Team</a></li>
+            <li><a href="achievements">Achievements</a></li>
+            <li><a href="faq">FAQ</a></li>
         </div>
-      <h1>Stanley Makanga</h1>
-      <p>Web Developer | Designer | Programmer</p>
-      <p>Passionate about building innovative solutions and solving problems through code.</p>
-      <a href="#portfolio" class="cta-button">View Portfolio</a>
-      <a href="contact" class="cta-button secondary">Hire Me</a>
-    </div>
-  </section>
-
-  <!-- About Me Section -->
-  <section id="about" class="about animate-slideInLeft">
-    <div class="about-content">
-      <img src="photo.jpg" alt="Stanley Makanga" class="profile-pic">
-      <div class="about-text">
-        <h2>About Me</h2>
-        <p>
-          I am a passionate developer and designer with a strong interest in programming, ethical hacking, robotics, and financial analysis. 
-          Currently pursuing a BSc in Computer Science at Karatina University, I am dedicated to building innovative solutions and expanding my knowledge in technology.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="skills animate-slideInRight">
-    <div class="about-content">
-        <img src="stanleymakanga2.jpg" alt="Stanley Makanga" class="profile-pic">
-        <div class="about-text">
-    <h2>Skills & Expertise</h2>
-    <div class="skills-grid">
-      <div class="skill-item">
-        <img src="html.png" alt="HTML">
-        <p>HTML</p>
-      </div>
-      <div class="skill-item">
-        <img src="css.png" alt="CSS">
-        <p>CSS</p>
-      </div>
-      <div class="skill-item">
-        <img src="javascript.png" alt="JavaScript">
-        <p>JavaScript</p>
-      </div>
-      <div class="skill-item">
-        <img src="php.png" alt="PHP">
-        <p>PHP</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio animate-slideInUp">
-    <h2>Featured Projects</h2>
-    <div class="portfolio-carousel">
-      <!-- Left Arrow -->
-      <div class="arrow left-arrow" onclick="prevProject()">&#10094;</div>
-
-      <!-- Projects Container -->
-      <div class="projects-container">
-        <div class="project-item active">
-          <img src="logo.webp" style="height: 100px; width: 100px; border-radius: 50%;" alt="Urban Retreat Ranch">
-          <h3>Urban Retreat Ranch</h3>
-          <p>A fully functional website for a ranch, featuring dynamic content and an admin panel.</p>
-          <button class="custom-button">
-            <a href="https://urbanretreat.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer">View Project</a>
-        </button>        
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
         </div>
-        <div class="project-item">
-          <img src="images/project2.jpg" alt="Project 2">
-          <h3>Project 2</h3>
-          <p>Description of Project 2.</p>
-          <a href="#" class="project-link">View Project</a>
+    </nav>
+    
+    <!-- Home Section -->
+    <section id="home">
+        <div class="home-bg-animation">
+            <div style="width: 50px; height: 50px; top: 20%; left: 10%;"></div>
+            <div style="width: 80px; height: 80px; top: 60%; left: 70%;"></div>
+            <div style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+            <div style="width: 60px; height: 60px; top: 30%; left: 80%;"></div>
+            <div style="width: 40px; height: 40px; top: 70%; left: 20%;"></div>
         </div>
-        <div class="project-item">
-          <img src="images/project3.jpg" alt="Project 3">
-          <h3>Project 3</h3>
-          <p>Description of Project 3.</p>
-          <a href="#" class="project-link">View Project</a>
+        <div class="home-content">
+            <h1>Hi, I'm <span>Stanley Makanga</span></h1>
+            <p>Computer Scientist | Crypto Enthusiast | Robotics Developer | Ethical Hacker</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/stanleymakanga2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
-      </div>
-
-      <!-- Right Arrow -->
-      <div class="arrow right-arrow" onclick="nextProject()">&#10095;</div>
-    </div>
-  </section>
-
-  <!-- Contact CTA Section -->
-  <section id="contact" class="contact-cta animate-fadeIn">
-    <div class="about-content">
-        <img src="stanleymakanga9.jpg" alt="Stanley Makanga" class="profile-pic">
-        <div class="about-text">
-    <h2>Let's Work Together</h2>
-    <p>Have a project in mind? Let's turn your ideas into reality!</p>
-    <a href="contact" class="cta-button">Contact Me</a>
-  </section>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
-
-  <!-- Footer Section -->
-<footer>
-    <div class="about-content">
-        <img src="stanleymakanga3.jpg" alt="Stanley Makanga" class="profile-pic">
-        <div class="about-text">
-    <div class="footer-content">
-      <!-- Quick Links -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="about">About Me</a></li>
-          <li><a href="skills">Skills</a></li>
-          <li><a href="blog">Blog</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="services">services</a></li>
-          <li><a href="achievements">Achievements</a></li>
-          <li><a href="faq">FAQ</a></li>
-        </ul>
-      </div>
-  
-      <!-- Social Media Links -->
-      <div class="footer-section social-media">
-        <h3>Follow Me</h3>
-        <div class="social-icons">
-            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
-                <i class="fab fa-facebook"></i>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="stanleymakanga1.jpg" alt="Stanley Makanga">
+            </div>
+            <div class="about-content">
+                <h3>Computer Scientist & Tech Innovator</h3>
+                <p>I'm Stanley Makanga, a passionate computer science student from Karatina University with expertise in web development, cryptocurrency, robotics, and cybersecurity. My journey in tech began with a curiosity about how things work, which evolved into a deep passion for creating innovative solutions.</p>
+                <p>Throughout my academic and professional journey, I've developed a diverse skill set that allows me to approach problems from multiple perspectives. Whether it's building automated trading bots, developing secure web applications, or creating DIY robotics projects, I thrive on challenges that push the boundaries of technology.</p>
+                
+                <div class="skills">
+                    <div class="skill-category">
+                        <h4>Technical Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Blockchain</span>
+                            <span class="skill-tag">Solidity</span>
+                            <span class="skill-tag">Arduino</span>
+                            <span class="skill-tag">Raspberry Pi</span>
+                            <span class="skill-tag">Penetration Testing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Areas of Expertise</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Web Development</span>
+                            <span class="skill-tag">Cryptocurrency Trading</span>
+                            <span class="skill-tag">Automation</span>
+                            <span class="skill-tag">Robotics</span>
+                            <span class="skill-tag">Cybersecurity</span>
+                            <span class="skill-tag">Ethical Hacking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="section-title">
+            <h2>My Portfolio</h2>
+        </div>
+        <div class="portfolio-container">
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="crypto">Crypto Projects</button>
+                <button class="filter-btn" data-filter="robotics">Robotics</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Web Development Project 1 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="portfolio-website.webp" alt="Portfolio Website">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>A responsive portfolio website showcasing my skills and projects with smooth animations and clean design.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">HTML</span>
+                            <span class="portfolio-tag">CSS</span>
+                            <span class="portfolio-tag">JavaScript</span>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="#" class="demo-link">Live Demo</a>
+                            <a href="#" class="code-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Crypto Project 1 -->
+                <div class="portfolio-item" data-category="crypto">
+                    <div class="portfolio-img">
+                        <img src="crypto-trading-robot.jpg" alt="Crypto Trading Bot">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Automated Crypto Trading Bot</h3>
+                        <p>A sophisticated trading algorithm that analyzes market trends and executes trades automatically, generating consistent profits.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Python</span>
+                            <span class="portfolio-tag">Binance API</span>
+                            <span class="portfolio-tag">Machine Learning</span>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="#" class="demo-link">See Results</a>
+                            <a href="#" class="code-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Robotics Project 1 -->
+                <div class="portfolio-item" data-category="robotics">
+                    <div class="portfolio-img">
+                        <img src="home-automation-system.webp" alt="Home Automation System">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Smart Home Automation System</h3>
+                        <p>A DIY home automation system using Raspberry Pi that controls lights, temperature, and security cameras.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Raspberry Pi</span>
+                            <span class="portfolio-tag">Python</span>
+                            <span class="portfolio-tag">IoT</span>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="#" class="demo-link">Watch Demo</a>
+                            <a href="#" class="code-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Project 1 -->
+                <div class="portfolio-item" data-category="security">
+                    <div class="portfolio-img">
+                        <img src="web-security-audit.jpg" alt="Security Audit">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Website Security Audit</h3>
+                        <p>Conducted a comprehensive security audit for an e-commerce website, identifying and fixing critical vulnerabilities.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Penetration Testing</span>
+                            <span class="portfolio-tag">OWASP</span>
+                            <span class="portfolio-tag">Security</span>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="#" class="demo-link">Case Study</a>
+                            <a href="#" class="code-link">View Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Development Project 2 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="e-comerce-website.png" alt="E-commerce Website">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-commerce Platform</h3>
+                        <p>A full-featured e-commerce website with product management, shopping cart, and payment integration.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">React</span>
+                            <span class="portfolio-tag">Node.js</span>
+                            <span class="portfolio-tag">MongoDB</span>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="#" class="demo-link">Live Demo</a>
+                            <a href="#" class="code-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Crypto Project 2 -->
+                <div class="portfolio-item" data-category="crypto">
+                    <div class="portfolio-img">
+                        <img src="blockchain-voting-system.webp" alt="Blockchain Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Blockchain Voting System</h3>
+                        <p>A decentralized voting application built on Ethereum blockchain ensuring transparency and security.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Solidity</span>
+                            <span class="portfolio-tag">Ethereum</span>
+                            <span class="portfolio-tag">Web3.js</span>
+                        </div>
+                        <div class="portfolio-links">
+                            <a href="#" class="demo-link">Live Demo</a>
+                            <a href="#" class="code-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Blog Section -->
+    <section id="blog">
+        <div class="section-title">
+            <h2>Latest Blog Posts</h2>
+        </div>
+        <div class="blog-container">
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="crypto-trends.jpg" alt="Crypto Trends">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">June 15, 2023 | Crypto</div>
+                        <h3>Emerging Trends in Cryptocurrency for 2023</h3>
+                        <p>An in-depth analysis of the most promising cryptocurrency trends and investment opportunities this year.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="web-development.jpg" alt="Web Development">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 28, 2025 | Web Development</div>
+                        <h3>Building a Portfolio Website from Scratch</h3>
+                        <p>A step-by-step guide to creating an impressive portfolio website that showcases your skills and projects.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="cybersecurity.jpeg" alt="Cybersecurity">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">April 10, 2023 | Cybersecurity</div>
+                        <h3>Essential Cybersecurity Practices for Developers</h3>
+                        <p>Learn the fundamental security practices every developer should implement to protect their applications.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-title">
+            <h2>My Services</h2>
+        </div>
+        <div class="services-container">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom website development tailored to your needs, from simple portfolio sites to complex web applications with responsive design and optimal performance.</p>
+                <a href="contact" class="service-link">Get Started</a>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h3>Crypto Consultancy</h3>
+                <p>Expert advice on cryptocurrency investments, trading strategies, and automated trading bot development to maximize your crypto portfolio returns.</p>
+                <a href="contact" class="service-link">Get Started</a>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>Robotics Projects</h3>
+                <p>Consultation and development for DIY electronics and robotics projects, from simple Arduino prototypes to advanced automation systems.</p>
+                <a href="contact" class="service-link">Get Started</a>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Cybersecurity Audits</h3>
+                <p>Comprehensive security assessments for your websites and applications to identify vulnerabilities and protect against potential threats.</p>
+                <a href="contact" class="service-link">Get Started</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Work Together</h3>
+                <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision. Feel free to reach out through any of the channels below.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:stanleymakanga45@gmail.com">stanleymakanga45@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <a href="tel:+254721991529">+254 721 991 529</a> || 
+                            <a href="tel:+254722772542">+254 722 772 542</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Nairobi, Kenya</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-social">
+                    <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
+                    <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/stanley-makanga-974393349" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/stanleymakanga2" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contact-form" action="https://formspree.io/f/xovealek" method="POST">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">Subject</label>
+                      <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="message">Message</label>
+                      <textarea id="message" name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                  </form>
+                  <div id="form-status"></div> <!-- For success/error messages -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <li><a href="about">About Me</a></li>
+                <li><a href="skills">Skills</a></li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li><a href="services">services</a></li>
+                <li><a href="achievements">Achievements</a></li>
+                <li><a href="faq">FAQ</a></li>
+            </div>
+            <p class="copyright">© 2025 Stanley Makanga. All Rights Reserved.</p>
+                <div class="footer-bottom">
+                    <p><a href="privacy">Privacy Policy</a></p>
+                </div>
+            <a href="#home" class="back-to-top">
+                <i class="fas fa-arrow-up"></i>
             </a>
-          <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i>
-          </a>
         </div>
-      </div>
-    </div>
-  
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
-    </div>
-  </footer>
-
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.about-img, .about-content, .portfolio-item, .blog-card, .service-card, .contact-info, .contact-form');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        // Filter portfolio items
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Background animation bubbles
+        const bgAnimation = document.querySelector('.home-bg-animation');
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.style.width = `${Math.random() * 60 + 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            bgAnimation.appendChild(bubble);
+        }
+    </script>
 </body>
 </html>
