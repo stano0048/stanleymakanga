@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript: Tips and Tricks | Your Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <style>
+        :root {
+            --primary: #f39c12;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #fef5e7;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(243, 156, 18, 0.95);
+            backdrop-filter: blur(5px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .blog-header {
+            background: linear-gradient(135deg, var(--primary), #f1c40f);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .blog-header h1.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .blog-header .meta {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            position: relative;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease 0.2s;
+        }
+        
+        .blog-header .meta.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .blog-content {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .main-content {
+            flex: 2;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .main-content.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .sidebar {
+            flex: 1;
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+        }
+        
+        .sidebar-widget {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            transform: translateX(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .sidebar-widget.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .sidebar-widget:nth-child(1) { transition-delay: 0.2s; }
+        .sidebar-widget:nth-child(2) { transition-delay: 0.4s; }
+        .sidebar-widget:nth-child(3) { transition-delay: 0.6s; }
+        
+        .sidebar-widget h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .post-image.animate {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .code-snippet {
+            background-color: #2d3436;
+            color: #f5f6fa;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .code-snippet.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .code-snippet .keyword {
+            color: #3498db;
+        }
+        
+        .code-snippet .function {
+            color: #f1c40f;
+        }
+        
+        .code-snippet .string {
+            color: #2ecc71;
+        }
+        
+        .code-snippet .comment {
+            color: #7f8c8d;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .read-more::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .read-more:hover::after {
+            left: 100%;
+        }
+        
+        .read-more:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tag {
+            background-color: var(--light);
+            color: var(--text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tip-card {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .tip-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .tip-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: '▹';
+            position: absolute;
+            left: -1.2rem;
+            color: var(--accent);
+        }
+        
+        
+        @media (max-width: 768px) {
+            .blog-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .blog-header {
+                padding: 6rem 0 3rem;
+            }
+        }
+        
+        /* Floating JS animation */
+        .floating-js {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: url('https://cdn-icons-png.flaticon.com/512/5968/5968292.png') center/contain no-repeat;
+            filter: drop-shadow(0 0 10px rgba(243, 156, 18, 0.5));
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .floating-js.visible {
+            opacity: 1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <header id="mainHeader">
+        <div class="container">
+            <nav>
+                <a href="https://stanleymakanga.vercel.app" class="logo">Stanley Makanga</a>
+                <button class="hamburger" aria-label="Toggle navigation">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                  </button>
+                  <!-- Navigation Links -->
+                  <ul class="nav-links">
+                    <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
+                    <li><a href="about">About Me</a></li>
+                    <li><a href="skills">Skills</a></li>
+                    <li><a href="achievements">Achievements</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                  </ul>
+                </nav>
+              </header>
+              <script>
+                // Hamburger Menu Toggle
+              const hamburger = document.querySelector('.hamburger');
+              const navLinks = document.querySelector('.nav-links');
+              
+              hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active'); // Toggle the 'active' class
+              });
+              </script>
+              
+    <section class="blog-header">
+        <div class="container">
+            <h1 id="mainTitle">Mastering JavaScript: Tips and Tricks</h1>
+            <div class="meta" id="postMeta">Posted on August 15, 2023 | 8 min read</div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <div class="blog-content">
+            <article class="main-content" id="mainArticle">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="JavaScript Code" class="post-image" id="featuredImage">
+                
+                <p>JavaScript is the backbone of modern web development, and mastering it can take your programming skills to new heights. Whether you're a beginner looking to level up or an experienced developer seeking advanced techniques, these tips and tricks will help you write cleaner, more efficient, and more powerful JavaScript code.</p>
+                
+                <h2>Modern JavaScript Features You Should Know</h2>
+                <p>ECMAScript 6 (ES6) and later versions introduced powerful features that can simplify your code:</p>
+                
+                <div class="code-snippet">
+                    <span class="keyword">const</span> <span class="function">advancedFeatures</span> = () => {<br>
+                    &nbsp;&nbsp;<span class="comment">// Arrow functions</span><br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> add = (a, b) => a + b;<br><br>
+                    
+                    &nbsp;&nbsp;<span class="comment">// Template literals</span><br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> name = <span class="string">'Alice'</span>;<br>
+                    &nbsp;&nbsp;console.log(<span class="string">`Hello ${name}`</span>);<br><br>
+                    
+                    &nbsp;&nbsp;<span class="comment">// Destructuring</span><br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> { prop1, prop2 } = someObject;<br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> [first, second] = someArray;<br><br>
+                    
+                    &nbsp;&nbsp;<span class="comment">// Spread/Rest operator</span><br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> combined = [...arr1, ...arr2];<br>
+                    &nbsp;&nbsp;<span class="keyword">const</span> { a, b, ...rest } = obj;<br>
+                    };
+                </div>
+                
+                <h2>Performance Optimization Tips</h2>
+                <p>Writing efficient JavaScript is crucial for smooth user experiences:</p>
+                
+                <div class="tip-card">
+                    <h3>Debounce and Throttle</h3>
+                    <p>Use these techniques to limit how often a function can execute, especially useful for scroll/resize events or search inputs.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>Web Workers</h3>
+                    <p>Offload CPU-intensive tasks to background threads to prevent UI freezing.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>Memoization</h3>
+                    <p>Cache function results to avoid redundant calculations for the same inputs.</p>
+                </div>
+                
+                <h2>Clean Code Practices</h2>
+                <p>Write maintainable JavaScript with these principles:</p>
+                <ul>
+                    <li>Follow consistent naming conventions (camelCase for variables/functions, PascalCase for classes)</li>
+                    <li>Keep functions small and focused (single responsibility principle)</li>
+                    <li>Use meaningful variable and function names</li>
+                    <li>Comment why, not what (the code should explain itself)</li>
+                    <li>Avoid deep nesting with early returns and guard clauses</li>
+                </ul>
+                
+                <h2>Advanced Techniques</h2>
+                <p>Take your skills further with these powerful patterns:</p>
+                <ol>
+                    <li><strong>Closures:</strong> Create private variables and maintain state</li>
+                    <li><strong>Currying:</strong> Transform functions to take arguments one at a time</li>
+                    <li><strong>Function Composition:</strong> Combine simple functions to build complex ones</li>
+                    <li><strong>Prototypal Inheritance:</strong> Understand JavaScript's object model</li>
+                    <li><strong>Proxy API:</strong> Create powerful wrappers around objects</li>
+                </ol>
+                
+                <h2>Debugging Like a Pro</h2>
+                <p>Master these debugging techniques to solve problems faster:</p>
+                <ul>
+                    <li>Use <code>console.table()</code> for arrays/objects</li>
+                    <li>Leverage browser DevTools breakpoints and step-through</li>
+                    <li>Learn to read stack traces effectively</li>
+                    <li>Use <code>debugger</code> statements strategically</li>
+                    <li>Implement error boundaries in your applications</li>
+                </ul>
+                
+                <p>Remember that mastering JavaScript is an ongoing journey. The language continues to evolve, so stay curious and keep learning!</p>
+                
+                <div class="tags">
+                    <a href="#" class="tag">#JavaScript</a>
+                    <a href="#" class="tag">#WebDevelopment</a>
+                    <a href="#" class="tag">#Programming</a>
+                    <a href="#" class="tag">#ES6</a>
+                    <a href="#" class="tag">#CodingTips</a>
+                </div>
+                
+                <a href="#" class="read-more">Explore More Coding Articles</a>
+            </article>
+            
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h3>About the Author</h3>
+                    <p>I'm a senior JavaScript developer with over 8 years of experience building web applications. I'm passionate about sharing knowledge and helping developers level up their skills.</p>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>Recommended Resources</h3>
+                    <ul>
+                        <li><a href="#">JavaScript Design Patterns</a></li>
+                        <li><a href="#">ES6+ Cheat Sheet</a></li>
+                        <li><a href="#">Advanced Debugging Techniques</a></li>
+                        <li><a href="#">Performance Optimization Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>Code Challenges</h3>
+                    <p>Test your JavaScript skills with these mini-challenges:</p>
+                    <div style="background-color: var(--light); padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">
+                        <p><strong>Challenge 1:</strong> Implement a memoization function</p>
+                        <p><strong>Challenge 2:</strong> Create a debounce function from scratch</p>
+                        <p><strong>Challenge 3:</strong> Write a deep object comparison function</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+          <!-- Quick Links -->
+          <div class="footer-section quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
+                <li><a href="about">About Me</a></li>
+                <li><a href="skills">Skills</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li><a href="services">services</a></li>
+                <li><a href="achievements">Achievements</a></li>
+                <li><a href="faq">FAQ</a></li>
+            </ul>
+          </div>
+    
+          <!-- Social Media Links -->
+          <div class="footer-section social-media">
+            <h3>Follow Me</h3>
+            <div class="social-icons">
+                <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook"></i>
+                </a>
+              <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
+        </div>
+      </footer>
+    
+    <div class="floating-js" id="floatingJS" title="Back to top"></div>
+    
+    <script>
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.blog-header h1, .blog-header .meta, .main-content, .sidebar-widget, .post-image, .code-snippet, .tip-card, footer');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if(elementPosition < screenPosition) {
+                    element.classList.add('animate');
+                }
+            });
+            
+            // Animate tip cards with staggered delay
+            const tipCards = document.querySelectorAll('.tip-card');
+            tipCards.forEach((card, index) => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if(cardPosition < screenPosition) {
+                    setTimeout(() => {
+                        card.classList.add('animate');
+                    }, index * 100);
+                }
+            });
+        }
+        
+        // Header scroll effect
+        function headerScrollEffect() {
+            const header = document.getElementById('mainHeader');
+            if(window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        // Progress bar
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+            
+            // Show/hide floating JS icon
+            if(scrolled > 20) {
+                document.getElementById('floatingJS').classList.add('visible');
+            } else {
+                document.getElementById('floatingJS').classList.remove('visible');
+            }
+        }
+        
+        // Floating JS icon click handler
+        document.getElementById('floatingJS').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Initial animations
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelector('.blog-header h1').classList.add('animate');
+                document.querySelector('.blog-header .meta').classList.add('animate');
+            }, 300);
+        });
+        
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            headerScrollEffect();
+            updateProgressBar();
+        });
+        
+        // Trigger animations on load for elements already in view
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
