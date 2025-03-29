@@ -1,188 +1,1115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me - Stanley Makanga</title>
-  <link rel="stylesheet" href="about.css">
-  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Stanley Makanga | Computer Scientist & Tech Innovator</title>
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.9);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(44, 62, 80, 0.98);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero-bg-animation div {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        /* About Sections */
+        .about-section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Personal Story Section */
+        .personal-story {
+            background-color: white;
+        }
+        
+        .story-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .story-img {
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+        
+        .story-img.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .story-img img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-img::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--secondary);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .story-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+        
+        .story-content.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .story-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .story-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            background-color: var(--light);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .skill-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .skill-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        /* Experience Section */
+        .experience-section {
+            background-color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: var(--secondary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        
+        .timeline-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 2rem);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 2rem);
+            text-align: left;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--secondary);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: calc(50% - 10px);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: calc(50% - 10px);
+        }
+        
+        .timeline-content {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .timeline-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Education Section */
+        .education-section {
+            background-color: var(--light);
+        }
+        
+        .education-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .education-img {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+        
+        .education-img.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .education-img img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .education-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+        
+        .education-content.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .education-item {
+            margin-bottom: 2rem;
+        }
+        
+        .education-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .education-item .degree {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .education-item .date {
+            color: #666;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .education-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.2s;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Goals Section */
+        .goals-section {
+            background-color: white;
+        }
+        
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .goal-card {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .goal-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .goal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .goal-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .goal-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .goal-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer-bottom a {
+            color: #d0dfee;
+            text-decoration: none;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(1000px);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .story-container, .education-container {
+                flex-direction: column;
+            }
+            
+            .story-img, .story-content, .education-img, .education-content {
+                flex: none;
+                width: 100%;
+            }
+            
+            .story-img, .education-img {
+                margin-bottom: 2rem;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 21px;
+            }
+            
+            .skills-grid, .goals-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .skills-grid, .goals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with Quick Links -->
-<header>
-  <nav>
-    <div class="logo">
-        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-    </div>
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-      <li><a href="skills">Skills</a></li>
-      <li><a href="blog">Blog</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="services">Services</a></li>
-      <li><a href="achievements">Achievements</a></li>
-      <li><a href="faq">FAQ</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  // Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Toggle the 'active' class
-});
-</script>
-  <!-- Hero Section  -->
-  <section id="hero" class="hero animate-fadeIn">
-    <div class="hero-content">
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Stanley<span> Makanga</span></div>
+        <div class="nav-links">
+            <a href="https://stanleymakanga.vercel.app">Home</a>
+            <a href="skills">Skills</a>
+            <a href="blog">Blog</a>
+            <a href="contact">Contact</a>
+            <a href="services">Services</a>
+            <a href="achievements">Achievements</a>
+            <a href="faq">FAQ</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="hero-bg-animation">
+            <div style="width: 50px; height: 50px; top: 20%; left: 10%;"></div>
+            <div style="width: 80px; height: 80px; top: 60%; left: 70%;"></div>
+            <div style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+            <div style="width: 60px; height: 60px; top: 30%; left: 80%;"></div>
+            <div style="width: 40px; height: 40px; top: 70%; left: 20%;"></div>
+        </div>
         <div class="hero-content">
-            <a href="https://stanleymakanga.vercel.app"><img style="border-radius: 50%; width: 100px; height: 110px" src="stanleymakanga7.jpg" alt="Stanley"></a>
+            <h1>My <span>Story</span></h1>
+            <p>Discover my journey, skills, and aspirations in technology and finance</p>
+
+            <div class="social-icons">
+                <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/stanleymakanga2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
-      <h1>Stanley Makanga</h1>
-      <p>Web Developer | Designer | Programmer</p>
-      <p>Passionate about building innovative solutions and solving problems through code.</p>
-      <a href="#portfolio" class="cta-button">View Portfolio</a>
-      <a href="contact" class="cta-button secondary">Hire Me</a>
-    </div>
-  </section>
-
-  <!-- About Page Content -->
-  <section id="introduction" class="animate-fadeIn">
-    <div class="container">
-      <h2>Introduction</h2>
-      <p>
-        I am a passionate developer and designer with a strong interest in programming, ethical hacking, robotics, and financial analysis. 
-        Currently pursuing a BSc in Computer Science at Karatina University, I am dedicated to building innovative solutions and expanding my knowledge in technology.
-      </p>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education" class="animate-slideInLeft">
-    <div class="container">
-      <h2>Education</h2>
-      <ul>
-        <li><strong>BSc in Computer Science</strong> - Karatina University (ongoing)</li>
-        <li><strong>Additional Studies</strong> - Finance (Ongoing, part-time studies)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Skills & Technologies Section -->
-  <section id="skills" class="animate-slideInRight">
-    <div class="container">
-      <h2>Skills & Technologies</h2>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <img src="html.png" alt="HTML">
-          <p>HTML</p>
+        
+    </section>
+    
+    <!-- Personal Story Section -->
+    <section class="about-section personal-story">
+        <div class="section-title">
+            <h2>Who I Am</h2>
         </div>
-        <div class="skill-item">
-          <img src="css.png" alt="CSS">
-          <p>CSS</p>
+        <div class="section-container">
+            <div class="story-container">
+                <div class="story-img">
+                    <img src="stanley-makanga.jpg" alt="Stanley Makanga">
+                </div>
+                <div class="story-content">
+                    <h3>A Passionate Developer & Tech Enthusiast</h3>
+                    <p>I'm Stanley Makanga, a passionate developer and website designer with a keen interest in programming, ethical hacking, robotics, video game development, and DIY electronics. My journey in technology began at a young age when I first discovered the magic of computers and how they could bring ideas to life.</p>
+                    <p>What started as simple HTML websites has evolved into a deep fascination with all aspects of technology. I love the challenge of solving complex problems and creating innovative solutions that make a difference. Whether it's building secure web applications, developing automated trading algorithms, or experimenting with robotics, I'm constantly pushing myself to learn and grow.</p>
+                    <p>Beyond technology, I have a strong interest in finance and how it intersects with the tech world. This dual passion has led me to explore areas like blockchain technology, algorithmic trading, and financial technology solutions.</p>
+                </div>
+            </div>
         </div>
-        <div class="skill-item">
-          <img src="javascript.png" alt="JavaScript">
-          <p>JavaScript</p>
+    </section>
+    
+    <!-- Skills Section -->
+    <section class="about-section skills-section">
+        <div class="section-title">
+            <h2>Skills & Expertise</h2>
         </div>
-        <div class="skill-item">
-          <img src="php.png" alt="PHP">
-          <p>PHP</p>
+        <div class="section-container">
+            <div class="skills-grid">
+                <!-- Skill 1 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Proficient in building responsive, user-friendly websites and web applications using modern technologies and frameworks.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Cryptocurrency</h3>
+                    <p>Experienced in cryptocurrency investing and trading, with over $100,000 worth of Bitcoin transactions and automated trading strategies.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Bitcoin</span>
+                        <span class="skill-tag">Trading Bots</span>
+                        <span class="skill-tag">Blockchain</span>
+                        <span class="skill-tag">Technical Analysis</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Robotics & Electronics</h3>
+                    <p>Passionate about building DIY electronics projects and robotics systems using platforms like Arduino and Raspberry Pi.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">Raspberry Pi</span>
+                        <span class="skill-tag">IoT</span>
+                        <span class="skill-tag">Embedded Systems</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>Knowledgeable in ethical hacking techniques and cybersecurity best practices to build secure systems and applications.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Penetration Testing</span>
+                        <span class="skill-tag">OWASP</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Cryptography</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce Development</h3>
+                    <p>Experience in building dynamic online shop systems with admin panels, payment integration, and inventory management.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">E-commerce</span>
+                        <span class="skill-tag">Payment Gateways</span>
+                        <span class="skill-tag">Admin Panels</span>
+                        <span class="skill-tag">Inventory Systems</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 6 -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI & Automation</h3>
+                    <p>Fascinated by artificial intelligence and automation, with experience building bots and automated systems.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Automation</span>
+                        <span class="skill-tag">Bots</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="animate-slideInLeft">
-    <div class="container">
-      <h2>Experience</h2>
-      <ul>
-        <li><strong>Freelance Web Developer</strong> - Designed and developed websites for clients.</li>
-        <li><strong>Urban Retreat Ranch</strong> - Built a fully functional website for a ranch.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Hobbies & Interests Section -->
-  <section id="hobbies" class="animate-slideInRight">
-    <div class="container">
-      <h2>Hobbies & Interests</h2>
-      <ul>
-        <li>Programming and problem-solving</li>
-        <li>Ethical hacking and cybersecurity</li>
-        <li>Robotics and DIY electronics</li>
-        <li>Game development</li>
-        <li>Financial analysis</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Download Resume Section -->
-  <section id="resume" class="animate-fadeIn">
-    <div class="container">
-      <h2>Download My Resume</h2>
-      <a href="Resume_For_Stanley.pdf" download class="cta-button">Download CV (PDF)</a>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer>
-    <div class="footer-content">
-      <!-- Quick Links -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-            <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-            <li><a href="skills">Skills</a></li>
-            <li><a href="blog">Blog</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a href="services">services</a></li>
-            <li><a href="achievements">Achievements</a></li>
-            <li><a href="faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Social Media Links -->
-      <div class="footer-section social-media">
-        <h3>Follow Me</h3>
-        <div class="social-icons">
-            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
-                <i class="fab fa-facebook"></i>
+    </section>
+    
+    <!-- Experience Section -->
+    <section class="about-section experience-section">
+        <div class="section-title">
+            <h2>My Experience</h2>
+        </div>
+        <div class="section-container">
+            <div class="timeline">
+                <!-- Experience 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3 class="timeline-title">Freelance Web Developer</h3>
+                        <p class="timeline-description">Building custom websites and web applications for clients across various industries, focusing on responsive design and user experience.</p>
+                    </div>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Present</div>
+                        <h3 class="timeline-title">Cryptocurrency Trader & Developer</h3>
+                        <p class="timeline-description">Developed and implemented automated trading strategies, successfully transacting over $100,000 worth of Bitcoin and other cryptocurrencies.</p>
+                    </div>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - 2025</div>
+                        <h3 class="timeline-title">E-commerce Developer</h3>
+                        <p class="timeline-description">Built dynamic online shop systems with custom admin panels, payment integration, and inventory management features.</p>
+                    </div>
+                </div>
+                
+                <!-- Experience 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Present</div>
+                        <h3 class="timeline-title">Cybersecurity Researcher</h3>
+                        <p class="timeline-description">Conducted security audits and penetration testing for various websites, identifying and helping to fix critical vulnerabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section class="about-section education-section">
+        <div class="section-title">
+            <h2>Education</h2>
+        </div>
+        <div class="section-container">
+            <div class="education-container">
+                <div class="education-img">
+                    <img src="stanley-makanga1.jpg" alt="Education">
+                </div>
+                <div class="education-content">
+                    <div class="education-item">
+                        <h3>Karatina University</h3>
+                        <span class="degree">Bachelor of Science in Computer Science</span>
+                        <span class="date">2023 - Present</span>
+                        <p>Currently pursuing a degree in Computer Science with coursework in programming, algorithms, data structures, computer networks, and software engineering.</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h3>Online Learning</h3>
+                        <span class="degree">Certificatation in Finance</span>
+                        <span class="date">2022 - Present</span>
+                        <p>Concurrently pursuing a Finance degree to complement my technical skills with financial expertise, focusing on financial analysis, investments, and economic principles.</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h3>Online Learning</h3>
+                        <span class="degree">Various Certifications & Courses</span>
+                        <span class="date">2023 - Present</span>
+                        <p>Continuously expanding my knowledge through online platforms like Coursera, Udemy, and edX, with certifications in web development, cybersecurity, and blockchain technology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Goals Section -->
+    <section class="about-section goals-section">
+        <div class="section-title">
+            <h2>My Goals</h2>
+        </div>
+        <div class="section-container">
+            <div class="goals-grid">
+                <!-- Goal 1 -->
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Goals</h3>
+                    <p>Complete my Bachelor's degree in Computer Science , then pursue a master's degree focusing on the intersection of technology and finance, such as financial technology or computational finance.</p>
+                </div>
+                
+                <!-- Goal 2 -->
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Professional Goals</h3>
+                    <p>Establish myself as an expert in fintech solutions, combining my programming skills with financial knowledge to develop innovative products in areas like algorithmic trading, blockchain applications, and financial analytics.</p>
+                </div>
+                
+                <!-- Goal 3 -->
+                <div class="goal-card">
+                    <div class="goal-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation Goals</h3>
+                    <p>Develop and launch my own tech products, potentially in the areas of automated trading systems, cybersecurity tools, or educational technology platforms that make complex technical concepts accessible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="skills">Skills</a>
+                <a href="blog">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="services">services</a>
+                <a href="achievements">Achievements</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <p class="copyright">© 2025 Stanley Makanga. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p><a href="privacy">Privacy Policy</a></p>
+            </div>
+            <a href="#" class="back-to-top">
+                <i class="fas fa-arrow-up"></i>
             </a>
-          <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i>
-          </a>
         </div>
-      </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="about.js"></script>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.story-img, .story-content, .skill-card, .timeline-item, .education-img, .education-content, .goal-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Background animation bubbles
+        const bgAnimation = document.querySelector('.hero-bg-animation');
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.style.width = `${Math.random() * 60 + 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            bgAnimation.appendChild(bubble);
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
