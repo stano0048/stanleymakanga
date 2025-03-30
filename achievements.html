@@ -1,160 +1,1023 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
-  <title>Achievements - Stanley Makanga</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements | Stanley Makanga</title>
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.9);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(44, 62, 80, 0.98);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .achievements-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero-bg-animation div {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        /* Achievements Sections */
+        .achievements-section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.2s;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Achievement Category */
+        .achievement-category {
+            margin-bottom: 4rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+        
+        .category-header.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .achievement-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .achievement-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .achievement-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .achievement-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .achievement-card:hover .achievement-img img {
+            transform: scale(1.1);
+        }
+        
+        .achievement-info {
+            padding: 1.5rem;
+        }
+        
+        .achievement-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .achievement-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .achievement-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-tag {
+            background-color: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .achievement-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .achievement-links a {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-link {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .demo-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .code-link {
+            background-color: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        .code-link:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Milestones Section */
+        .milestones-section {
+            background-color: white;
+        }
+        
+        .milestones-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .milestone-item {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .milestone-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .milestone-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .milestone-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .milestone-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer-bottom a {
+            color: #d0dfee;
+            text-decoration: none;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(1000px);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .category-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .milestone-item {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header with Quick Links -->
-  <header>
-  <nav>
-    <div class="logo">
-        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-    </div>
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-      <li><a href="about">About Me</a></li>
-      <li><a href="skills">Skills</a></li>
-      <li><a href="blog">Blog</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="services">Services</a></li>
-      <li><a href="faq">FAQ</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  // Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Toggle the 'active' class
-});
-</script>
-
-  <!-- Hero Section (Same as Homepage) -->
-  <section id="hero" class="hero animate-fadeIn">
-    <div class="hero-content">
-      <h1>Stanley Makanga</h1>
-      <p>Web Developer | Designer | Programmer</p>
-      <p>Passionate about building innovative solutions and solving problems through code.</p>
-      <a href="index.html#portfolio" class="cta-button">View Portfolio</a>
-      <a href="contact" class="cta-button secondary">Hire Me</a>
-    </div>
-  </section>
-
-  <!-- Achievements Section -->
-  <section id="achievements" class="animate-fadeIn">
-    <div class="container">
-      <h2>Crypto & Finance Achievements</h2>
-      <div class="achievements-grid">
-        <div class="achievement-item animate-slideInLeft">
-          <img src="crypto.webp" alt="Crypto Trading">
-          <h3>Profitable Trades & ROI</h3>
-          <p>Achieved a 50% ROI in crypto trading within six months through strategic risk management and market analysis.</p>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Stanley<span> Makanga</span></div>
+        <div class="nav-links">
+            <a href="https://stanleymakanga.vercel.app">Home</a>
+            <a href="about">About Me</a>
+            <a href="skills">Skills</a>
+            <a href="blog">Blog</a>
+            <a href="contact">Contact</a>
+            <a href="services">Services</a>
+            <a href="faq">FAQ</a>
         </div>
-        <div class="achievement-item animate-slideInRight">
-          <img src="defi.jpg" alt="DeFi Earnings">
-          <h3>DeFi & Staking Earnings</h3>
-          <p>Earned passive income through staking, yield farming, and lending on platforms like Aave and Compound.</p>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
         </div>
-        <div class="achievement-item animate-slideInLeft">
-          <img src="web3.jpg" alt="NFT Projects">
-          <h3>NFTs & Web3 Projects</h3>
-          <p>Invested in and created NFTs, and contributed to Web3 projects focused on decentralized identity solutions.</p>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="achievements-hero">
+        <div class="hero-bg-animation">
+            <div style="width: 50px; height: 50px; top: 20%; left: 10%;"></div>
+            <div style="width: 80px; height: 80px; top: 60%; left: 70%;"></div>
+            <div style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+            <div style="width: 60px; height: 60px; top: 30%; left: 80%;"></div>
+            <div style="width: 40px; height: 40px; top: 70%; left: 20%;"></div>
         </div>
-      </div>
-
-      <h2>Tech & Development Achievements</h2>
-      <div class="achievements-grid">
-        <div class="achievement-item animate-slideInRight">
-          <img src="crypto-bot.webp" alt="Trading Bot">
-          <h3>Developed Crypto-Related Software</h3>
-          <p>Built a crypto trading bot that automates trades based on technical indicators and market trends.</p>
+        <div class="hero-content">
+            <h1>My <span>Achievements</span></h1>
+            <p>Highlighting my accomplishments across web development, crypto, entrepreneurship, and technology</p>
+            <div class="social-icons">
+                <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/stanleymakanga2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
-        <div class="achievement-item animate-slideInLeft">
-          <img src="crypto-security.jpg" alt="Ethical Hacking">
-          <h3>Hacking & Security Contributions</h3>
-          <p>Identified vulnerabilities in crypto wallets and exchanges, contributing to improved security measures.</p>
+    </section>
+    
+    <!-- Web Development Achievements -->
+    <section class="achievements-section">
+        <div class="section-container">
+            <div class="achievement-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h2 class="category-title">Web Development & Design</h2>
+                </div>
+                
+                <div class="achievements-grid">
+                    <!-- Achievement 1 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="e-comerce-website.png" alt="E-commerce Website">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>E-commerce Platform with Admin Panel</h3>
+                            <p>Built a complete online shop system with product management, user accounts, and M-Pesa payment integration for seamless mobile payments in Kenya.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">E-commerce</span>
+                                <span class="achievement-tag">M-Pesa</span>
+                                <span class="achievement-tag">Admin Panel</span>
+                            </div>
+                            <div class="achievement-links">
+                                <a href="#" class="demo-link">View Demo</a>
+                                <a href="#" class="code-link">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="online-casino.jpg" alt="Online Casino">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Online Casino Platform</h3>
+                            <p>Developing an interactive online casino featuring games like Spin & Win, Roulette, and multiplayer capabilities with real-time functionality.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Game Development</span>
+                                <span class="achievement-tag">Real-time</span>
+                                <span class="achievement-tag">WebSockets</span>
+                            </div>
+                            <div class="achievement-links">
+                                <a href="#" class="demo-link">Preview</a>
+                                <a href="#" class="code-link">Tech Stack</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="portfolioweb.jpeg" alt="Portfolio Websites">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Multiple Portfolio Websites</h3>
+                            <p>Designed and developed numerous portfolio websites for clients, focusing on responsive design, user experience, and modern aesthetics.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">UI/UX</span>
+                                <span class="achievement-tag">Responsive</span>
+                                <span class="achievement-tag">Modern Design</span>
+                            </div>
+                            <div class="achievement-links">
+                                <a href="#" class="demo-link">View Examples</a>
+                                <a href="#" class="code-link">Design Process</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="achievement-item animate-slideInRight">
-          <h3>Financial Analysis Skills</h3>
-          <p>Applied finance knowledge to crypto analysis, providing accurate market predictions and risk assessments.</p>
+    </section>
+    
+    <!-- Programming & Tech Skills -->
+    <section class="achievements-section" style="background-color: var(--light);">
+        <div class="section-container">
+            <div class="achievement-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h2 class="category-title">Programming & Tech Skills</h2>
+                </div>
+                
+                <div class="achievements-grid">
+                    <!-- Achievement 1 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="c-programming.webp" alt="C Programming">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Proficiency in C Programming</h3>
+                            <p>Developed strong foundational skills in C programming, creating various system utilities and understanding low-level programming concepts.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">C Programming</span>
+                                <span class="achievement-tag">System Utilities</span>
+                                <span class="achievement-tag">Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="php&mysql.webp" alt="PHP & MySQL">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Backend Development with PHP & MySQL</h3>
+                            <p>Expanding skills into backend development by building database-driven applications with PHP and MySQL for robust web solutions.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">PHP</span>
+                                <span class="achievement-tag">MySQL</span>
+                                <span class="achievement-tag">Backend</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="automation.jpg" alt="AI & Automation">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>AI & Automation Projects</h3>
+                            <p>Exploring artificial intelligence and automation through projects like trading algorithms, chatbots, and game development prototypes.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">AI</span>
+                                <span class="achievement-tag">Automation</span>
+                                <span class="achievement-tag">Game Dev</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <h2>General Tech & Business Achievements</h2>
-      <div class="achievements-grid">
-        <div class="achievement-item animate-slideInLeft">
-          <h3>Entrepreneurial Success</h3>
-          <p>Built an online business generating consistent revenue through digital products and services.</p>
+    </section>
+    
+    <!-- Crypto Investment -->
+    <section class="achievements-section milestones-section">
+        <div class="section-container">
+            <div class="achievement-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h2 class="category-title">Crypto Investment</h2>
+                </div>
+                
+                <div class="milestones-container">
+                    <div class="milestone-item">
+                        <div class="milestone-number">$100K+</div>
+                        <div class="milestone-title">Bitcoin Transactions</div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-number">5+</div>
+                        <div class="milestone-title">Years in Crypto</div>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-number">12+</div>
+                        <div class="milestone-title">Trading Strategies</div>
+                    </div>
+                </div>
+                
+                <div class="achievements-grid" style="margin-top: 3rem;">
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="crypto-trading.jpg" alt="Crypto Trading">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Extensive Cryptocurrency Experience</h3>
+                            <p>Successfully transacted approximately $100,000 worth of Bitcoin, demonstrating substantial experience in cryptocurrency trading and investment strategies.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Bitcoin</span>
+                                <span class="achievement-tag">Trading</span>
+                                <span class="achievement-tag">Investment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="achievement-item animate-slideInRight">
-          <img src="ai-project.webp" alt="Automation Tools">
-          <h3>Automation & AI Projects</h3>
-          <p>Created automation tools and AI models for crypto trading and financial analysis, improving efficiency.</p>
+    </section>
+    
+    <!-- Entrepreneurship & Financial Growth -->
+    <section class="achievements-section">
+        <div class="section-container">
+            <div class="achievement-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="category-title">Entrepreneurship & Financial Growth</h2>
+                </div>
+                
+                <div class="achievements-grid">
+                    <!-- Achievement 1 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="algorithm-trading.jpg" alt="Algorithmic Trading">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Algorithmic Trading Development</h3>
+                            <p>Working on sophisticated financial projects including automated trading algorithms that analyze market trends and execute trades with precision.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Algorithmic Trading</span>
+                                <span class="achievement-tag">Finance</span>
+                                <span class="achievement-tag">Automation</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="stanley-makanga-at-karu.jpg" alt="Dual Degrees">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Dual Degree Pursuit</h3>
+                            <p>Simultaneously studying BSc Computer Science at Karatina University and certification in Finance (as part-time study) to combine technical skills with financial expertise for fintech innovation.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Computer Science</span>
+                                <span class="achievement-tag">Finance</span>
+                                <span class="achievement-tag">Education</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="fintech.png" alt="Fintech Solutions">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Fintech Solutions Exploration</h3>
+                            <p>Researching and developing financial technology solutions that bridge the gap between traditional finance and emerging digital technologies.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Fintech</span>
+                                <span class="achievement-tag">Innovation</span>
+                                <span class="achievement-tag">Financial Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer>
-    <div class="footer-content">
-      <!-- Quick Links -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-          <li><a href="about">About Me</a></li>
-          <li><a href="services">Services</a></li>
-          <li><a href="blog">Blog</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Social Media Links -->
-      <div class="footer-section social-media">
-        <h3>Follow Me</h3>
-        <div class="social-icons">
-            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
-                <i class="fab fa-facebook"></i>
+    </section>
+    
+    <!-- Hacking & Robotics -->
+    <section class="achievements-section" style="background-color: var(--light);">
+        <div class="section-container">
+            <div class="achievement-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2 class="category-title">Hacking & Robotics</h2>
+                </div>
+                
+                <div class="achievements-grid">
+                    <!-- Achievement 1 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="ethical-hacking.jpg" alt="Ethical Hacking">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Ethical Hacking & Security</h3>
+                            <p>Developing skills in ethical hacking and security testing to identify vulnerabilities and strengthen system defenses against cyber threats.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Cybersecurity</span>
+                                <span class="achievement-tag">Penetration Testing</span>
+                                <span class="achievement-tag">Ethical Hacking</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="robotics.avif" alt="Robotics Projects">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Robotics & DIY Electronics</h3>
+                            <p>Exploring robotics and electronics through hands-on projects that combine hardware and software for innovative solutions and automation.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Robotics</span>
+                                <span class="achievement-tag">DIY Electronics</span>
+                                <span class="achievement-tag">Hardware</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="achievement-card">
+                        <div class="achievement-img">
+                            <img src="personal-branding.jpg" alt="Personal Branding">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Personal Brand Development</h3>
+                            <p>Cultivated a strong personal brand as a "Passionate Developer & Tech Enthusiast" through consistent project work and online presence.</p>
+                            <div class="achievement-tags">
+                                <span class="achievement-tag">Personal Branding</span>
+                                <span class="achievement-tag">Online Presence</span>
+                                <span class="achievement-tag">Tech Community</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
+                <a href="services">Services</a>
+                <a href="blog">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <p class="copyright">© 2025 Stanley Makanga. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p><a href="privacy">Privacy Policy</a></p>
+            </div>
+            <a href="#" class="back-to-top">
+                <i class="fas fa-arrow-up"></i>
             </a>
-          <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i>
-          </a>
         </div>
-      </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.category-header, .achievement-card, .milestone-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Background animation bubbles
+        const bgAnimation = document.querySelector('.hero-bg-animation');
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.style.width = `${Math.random() * 60 + 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            bgAnimation.appendChild(bubble);
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
