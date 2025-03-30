@@ -1,181 +1,955 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Stanley Makanga</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Stanley Makanga</title>
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.9);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(44, 62, 80, 0.98);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .blog-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero-bg-animation div {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        /* Blog Sections */
+        .blog-section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Blog Filter */
+        .blog-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .blog-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-img img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .blog-category {
+            background-color: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+        
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .read-more:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.2s;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        /* Newsletter Section */
+        .newsletter-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-container p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+        
+        .newsletter-btn {
+            padding: 0 1.8rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer-bottom a {
+            color: #d0dfee;
+            text-decoration: none;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(1000px);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 30px;
+                padding: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-      <!-- Header with Quick Links -->
-  <header>
-  <nav>
-    <div class="logo">
-        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-    </div>
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-      <li><a href="about">About Me</a></li>
-      <li><a href="skills">Skills</a></li>
-      <li><a href="achievements">Achievements</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="services">Services</a></li>
-      <li><a href="faq">FAQ</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  // Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Toggle the 'active' class
-});
-</script>
-
-  <!-- Hero Section (Same as Homepage) -->
-  <section id="hero" class="hero animate-fadeIn">
-    <div class="hero-content">
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Stanley <span>Makanga</span></div>
+        <div class="nav-links">
+            <a href="https://stanleymakanga.vercel.app">Home</a>
+            <a href="about">About Me</a>
+            <a href="skills">Skills</a>
+            <a href="achievements">Achievements</a>
+            <a href="contact">Contact</a>
+            <a href="services">Services</a>
+            <a href="faq">FAQ</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="hero-bg-animation">
+            <div style="width: 50px; height: 50px; top: 20%; left: 10%;"></div>
+            <div style="width: 80px; height: 80px; top: 60%; left: 70%;"></div>
+            <div style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+            <div style="width: 60px; height: 60px; top: 30%; left: 80%;"></div>
+            <div style="width: 40px; height: 40px; top: 70%; left: 20%;"></div>
+        </div>
         <div class="hero-content">
-            <a href="https://stanleymakanga.vercel.app"><img style="border-radius: 50%; width: 100px; height: 110px" src="stanleymakanga7.jpg" alt="Stanley"></a>
+            <h1>Tech <span>Blog</span></h1>
+            <p>Insights, tutorials, and thoughts on web development, crypto, cybersecurity, and emerging technologies</p>
+            <div class="social-icons">
+                <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/stanleymakanga2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
-      <h1>Stanley Makanga</h1>
-      <p>Web Developer | Designer | Programmer</p>
-      <p>Passionate about building innovative solutions and solving problems through code.</p>
-      <a href="index.html#portfolio" class="cta-button">View Portfolio</a>
-      <a href="contact" class="cta-button secondary">Hire Me</a>
-    </div>
-  </section>
+    </section>
+    
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Latest Articles</h2>
+            </div>
+            
+            <div class="blog-filter">
+                <button class="filter-btn active" data-filter="all">All Articles</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="programming">Programming</button>
+                <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                <button class="filter-btn" data-filter="crypto">Crypto</button>
+                <button class="filter-btn" data-filter="ai">AI & Robotics</button>
+            </div>
+            
+            <div class="blog-grid">
+                <!-- Web Development Articles -->
+                <div class="blog-card" data-category="web">
+                    <div class="blog-img">
+                        <img src="ecommerce-web.jpg" alt="PHP & MySQL">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">April 10, 2025</span>
+                            <span class="blog-category">Web Development</span>
+                        </div>
+                        <h3>How to Build a Dynamic Shop Website with PHP & MySQL</h3>
+                        <p>A comprehensive guide to creating an e-commerce platform from scratch with product management and user accounts.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="web">
+                    <div class="blog-img">
+                        <img src="m-pesa-intergration.webp" alt="M-Pesa Integration">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">April 05, 2025</span>
+                            <span class="blog-category">Web Development</span>
+                        </div>
+                        <h3>Integrating M-Pesa Payments in E-Commerce Websites</h3>
+                        <p>Step-by-step tutorial on implementing Kenya's popular mobile payment system in your online store.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="web">
+                    <div class="blog-img">
+                        <img src="ui-ux-design.jpg" alt="UI/UX Design">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 28, 2025</span>
+                            <span class="blog-category">Web Development</span>
+                        </div>
+                        <h3>Best Practices for UI/UX Design in Web Development</h3>
+                        <p>Essential design principles to create intuitive and user-friendly web interfaces that convert visitors.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Programming Articles -->
+                <div class="blog-card" data-category="programming">
+                    <div class="blog-img">
+                        <img src="Beginner-learning-C.jpeg" alt="C Programming">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 22, 2025</span>
+                            <span class="blog-category">Programming</span>
+                        </div>
+                        <h3>Getting Started with C Programming: A Beginner's Guide</h3>
+                        <p>Fundamentals of C programming language and how to write your first efficient programs.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="programming">
+                    <div class="blog-img">
+                        <img src="game-development.jpg" alt="Game Development">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 10, 2025</span>
+                            <span class="blog-category">Programming</span>
+                        </div>
+                        <h3>Game Development 101: How to Create a Crash Game Like Aviator</h3>
+                        <p>Learn the basics of game mechanics and mathematics behind popular crash games.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Cybersecurity Articles -->
+                <div class="blog-card" data-category="cybersecurity">
+                    <div class="blog-img">
+                        <img src="website-security.png" alt="Security Vulnerabilities">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 10, 2025</span>
+                            <span class="blog-category">Cybersecurity</span>
+                        </div>
+                        <h3>Common Website Security Vulnerabilities and How to Fix Them</h3>
+                        <p>Identifying and patching security holes in your web applications to prevent attacks.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="cybersecurity">
+                    <div class="blog-img">
+                        <img src="php-security.avif" alt="PHP Security">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">February 28, 2025</span>
+                            <span class="blog-category">Cybersecurity</span>
+                        </div>
+                        <h3>How to Secure a PHP Website from SQL Injection & XSS Attacks</h3>
+                        <p>Practical techniques to protect your PHP applications from common web attacks.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Crypto Articles -->
+                <div class="blog-card" data-category="crypto">
+                    <div class="blog-img">
+                        <img src="crypto-transaction.jpg" alt="Bitcoin Trading">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">February 20, 2025</span>
+                            <span class="blog-category">Crypto</span>
+                        </div>
+                        <h3>How I Transacted $100,000+ in Bitcoin: Lessons & Mistakes</h3>
+                        <p>Personal experiences and key takeaways from extensive cryptocurrency trading.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="crypto">
+                    <div class="blog-img">
+                        <img src="crypto-market.webp" alt="Crypto Market">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">February 15, 2025</span>
+                            <span class="blog-category">Crypto</span>
+                        </div>
+                        <h3>How to Analyze Crypto Market Trends Before Investing</h3>
+                        <p>Technical and fundamental analysis techniques for making informed crypto investments.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- AI & Robotics Articles -->
+                
+                <div class="blog-card" data-category="ai">
+                    <div class="blog-img">
+                        <img src="arduino.avif" alt="Arduino & Raspberry Pi">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">January 12, 2025</span>
+                            <span class="blog-category">AI & Robotics</span>
+                        </div>
+                        <h3>Basics of Robotics: Getting Started with Arduino & Raspberry Pi</h3>
+                        <p>Beginner's guide to building simple robotics projects with popular microcontroller boards.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="ai">
+                    <div class="blog-img">
+                        <img src="ai-web-development.jpg" alt="AI in Web Development">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">December 20, 2024</span>
+                            <span class="blog-category">AI & Robotics</span>
+                        </div>
+                        <h3>How to Implement AI in Web Development</h3>
+                        <p>Practical ways to integrate artificial intelligence features into your web applications.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card" data-category="web">
+                    <div class="blog-img">
+                        <img src="admin-panel.jpeg" alt="Admin Panel">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">December 5, 2024</span>
+                            <span class="blog-category">Web Development</span>
+                        </div>
+                        <h3>Step-by-Step Guide to Creating an Admin Panel for Product Management</h3>
+                        <p>Building a secure and efficient admin interface for your e-commerce platform.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
 
-  <!-- Recent Posts Section -->
-  <section id="recent-posts" class="animate-fadeIn">
-    <div class="container">
-      <h2>Recent Posts</h2>
-      <div class="posts-grid">
-        <div class="post-item">
-          <img src="ethical.jpg" alt="Blog Post 1">
-          <h3>Introduction to Ethical Hacking</h3>
-          <p>Learn the basics of ethical hacking and how to secure your systems.</p>
-          <a href="ethical-hacking" class="read-more">Read More</a>
+                <div class="blog-card" data-category="ai">
+                    <div class="blog-img">
+                        <img src="whatsapp-chatbot.webp" alt="WhatsApp Chatbot">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">January 25, 2023</span>
+                            <span class="blog-category">AI & Robotics</span>
+                        </div>
+                        <h3>How to Build an AI-Powered WhatsApp Chatbot for Your Business</h3>
+                        <p>Creating automated customer service solutions using WhatsApp Business API and AI.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="post-item">
-          <img src="robotics.jpg" alt="Blog Post 2">
-          <h3>Getting Started with Robotics</h3>
-          <p>A beginner's guide to building and programming robots.</p>
-          <a href="robotics" class="read-more">Read More</a>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h3>Subscribe to My Newsletter</h3>
+            <p>Get the latest articles, tutorials, and tech insights delivered straight to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
         </div>
-        <div class="post-item">
-          <img src="js.jpg" alt="Blog Post 3">
-          <h3>Mastering JavaScript: Tips and Tricks</h3>
-          <p>Advanced techniques to level up your JavaScript skills.</p>
-          <a href="mastering-javascript" class="read-more">Read More</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Categories & Tags Section -->
-  <section id="categories" class="animate-slideInLeft">
-    <div class="container">
-      <h2>Categories & Tags</h2>
-      <div class="categories-grid">
-        <div class="category-item">
-          <h3>Web Development</h3>
-          <ul>
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>
-        <div class="category-item">
-          <h3>Artificial Intelligence</h3>
-          <ul>
-            <li><a href="#">Machine Learning</a></li>
-            <li><a href="#">Neural Networks</a></li>
-            <li><a href="#">Natural Language Processing</a></li>
-          </ul>
-        </div>
-        <div class="category-item">
-          <h3>Robotics</h3>
-          <ul>
-            <li><a href="#">Arduino</a></li>
-            <li><a href="#">Raspberry Pi</a></li>
-            <li><a href="#">DIY Projects</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Search Bar Section -->
-  <section id="search" class="animate-slideInRight">
-    <div class="container">
-      <h2>Search Blog Posts</h2>
-      <form id="search-form">
-        <input type="text" id="search-input" placeholder="Enter keywords...">
-        <button type="submit" class="cta-button">Search</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer>
-    <div class="footer-content">
-      <!-- Quick Links -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-            <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-            <li><a href="about">About Me</a></li>
-            <li><a href="skills">Skills</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a href="services">services</a></li>
-            <li><a href="achievements">Achievements</a></li>
-            <li><a href="faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Social Media Links -->
-      <div class="footer-section social-media">
-        <h3>Follow Me</h3>
-        <div class="social-icons">
-            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
-                <i class="fab fa-facebook"></i>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
+                <a href="skills">Skills</a>
+                <a href="contact">Contact</a>
+                <a href="services">services</a>
+                <a href="achievements">Achievements</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <p class="copyright">© 2025 Stanley Makanga. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p><a href="privacy">Privacy Policy</a></p>
+            </div>
+            <a href="#" class="back-to-top">
+                <i class="fas fa-arrow-up"></i>
             </a>
-          <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i>
-          </a>
         </div>
-      </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Filter blog posts
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                blogCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.blog-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Background animation bubbles
+        const bgAnimation = document.querySelector('.hero-bg-animation');
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.style.width = `${Math.random() * 60 + 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            bgAnimation.appendChild(bubble);
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
