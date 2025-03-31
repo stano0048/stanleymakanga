@@ -1,202 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services - Stanley Makanga</title>
-  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Stanley Makanga</title>
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.9);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(44, 62, 80, 0.98);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .services-hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero-bg-animation div {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        /* Services Sections */
+        .services-section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Services Filter */
+        .services-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .service-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-header {
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .service-category {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .service-price {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-duration {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-features {
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .service-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.2s;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer-bottom a {
+            color: #d0dfee;
+            text-decoration: none;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(1000px);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Header with Quick Links -->
-  <header>
-  <nav>
-    <div class="logo">
-        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-    </div>
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-      <li><a href="about">About Me</a></li>
-      <li><a href="skills">Skills</a></li>
-      <li><a href="blog">Blog</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="achievements">Achievements</a></li>
-      <li><a href="faq">FAQ</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  // Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Toggle the 'active' class
-});
-</script>
-  <!-- Hero Section (Same as Homepage) -->
-  <section id="hero" class="hero animate-fadeIn">
-    <div class="hero-content">
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Stanley <span>Makanga</span></div>
+        <div class="nav-links">
+            <a href="https://stanleymakanga.vercel.app">Home</a>
+            <a href="about">About Me</a>
+            <a href="skills">Skills</a>
+            <a href="blog">Blog</a>
+            <a href="contact">Contact</a>
+            <a href="achievements">Achievements</a>
+            <a href="faq">FAQ</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="hero-bg-animation">
+            <div style="width: 50px; height: 50px; top: 20%; left: 10%;"></div>
+            <div style="width: 80px; height: 80px; top: 60%; left: 70%;"></div>
+            <div style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+            <div style="width: 60px; height: 60px; top: 30%; left: 80%;"></div>
+            <div style="width: 40px; height: 40px; top: 70%; left: 20%;"></div>
+        </div>
         <div class="hero-content">
-            <a href="https://stanleymakanga.vercel.app"><img style="border-radius: 50%; width: 100px; height: 110px" src="stanleymakanga7.jpg" alt="Stanley"></a>
+            <h1>My <span>Services</span></h1>
+            <p>Professional solutions tailored to your business needs with transparent pricing</p>
+            <div class="social-icons">
+                <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/stanleymakanga2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
-      <h1>Stanley Makanga</h1>
-      <p>Web Developer | Designer | Programmer</p>
-      <p>Passionate about building innovative solutions and solving problems through code.</p>
-      <a href="index.html#portfolio" class="cta-button">View Portfolio</a>
-      <a href="contact" class="cta-button secondary">Hire Me</a>
-    </div>
-  </section>
-
-  <!-- Service Offerings Section -->
-  <section id="services" class="animate-fadeIn">
-    <div class="container">
-      <h2>Service Offerings</h2>
-      <div class="services-grid">
-        <div class="service-item">
-          <i class="fas fa-laptop-code service-icon"></i>
-          <h3>Web Development</h3>
-          <p>Building responsive and dynamic websites tailored to your needs.</p>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Services & Pricing</h2>
+            </div>
+            
+            <div class="services-filter">
+                <button class="filter-btn active" data-filter="all">All Services</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="security">Cybersecurity</button>
+                <button class="filter-btn" data-filter="crypto">Crypto & Finance</button>
+                <button class="filter-btn" data-filter="ai">AI & Robotics</button>
+                <button class="filter-btn" data-filter="game">Game Development</button>
+                <button class="filter-btn" data-filter="other">Other Services</button>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Web Development Services -->
+                <div class="service-card" data-category="web">
+                    <div class="service-header">
+                        <div class="service-category">Web Development</div>
+                        <h3 class="service-title">Basic Business Website</h3>
+                        <div class="service-price">KES 15,000 - 30,000</div>
+                        <div class="service-duration">Delivery: 1-2 weeks</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>5-page responsive website</li>
+                            <li>Mobile-friendly design</li>
+                            <li>Basic SEO setup</li>
+                            <li>Contact form integration</li>
+                            <li>1 year technical support</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20Basic%20Business%20Website%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-category="web">
+                    <div class="service-header">
+                        <div class="service-category">Web Development</div>
+                        <h3 class="service-title">E-Commerce Website</h3>
+                        <div class="service-price">KES 40,000 - 80,000</div>
+                        <div class="service-duration">Delivery: 3-5 weeks</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>Full online store setup</li>
+                            <li>M-Pesa payment integration</li>
+                            <li>Admin dashboard</li>
+                            <li>Product management system</li>
+                            <li>Order tracking</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20E-Commerce%20Website%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-category="web">
+                    <div class="service-header">
+                        <div class="service-category">Web Development</div>
+                        <h3 class="service-title">Website Redesign</h3>
+                        <div class="service-price">KES 10,000 - 25,000</div>
+                        <div class="service-duration">Delivery: 1-2 weeks</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>Modern UI/UX improvements</li>
+                            <li>Responsive design updates</li>
+                            <li>Performance optimization</li>
+                            <li>Content reorganization</li>
+                            <li>Brand consistency</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20Website%20Redesign%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Cybersecurity Services -->
+                <div class="service-card" data-category="security">
+                    <div class="service-header">
+                        <div class="service-category">Cybersecurity</div>
+                        <h3 class="service-title">Basic Security Check</h3>
+                        <div class="service-price">KES 10,000</div>
+                        <div class="service-duration">Delivery: 3-5 days</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>SQL injection testing</li>
+                            <li>XSS vulnerability check</li>
+                            <li>Security headers audit</li>
+                            <li>Basic penetration test</li>
+                            <li>Detailed report</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20Basic%20Security%20Check%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-category="security">
+                    <div class="service-header">
+                        <div class="service-category">Cybersecurity</div>
+                        <h3 class="service-title">Full Security Audit</h3>
+                        <div class="service-price">KES 25,000 - 50,000</div>
+                        <div class="service-duration">Delivery: 1-2 weeks</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>Comprehensive vulnerability scan</li>
+                            <li>Penetration testing</li>
+                            <li>Security fixes implementation</li>
+                            <li>Ongoing monitoring setup</li>
+                            <li>Security training</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20Full%20Security%20Audit%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Crypto & Financial Services -->
+                <div class="service-card" data-category="crypto">
+                    <div class="service-header">
+                        <div class="service-category">Crypto & Finance</div>
+                        <h3 class="service-title">Basic Crypto Guide</h3>
+                        <div class="service-price">KES 3,000</div>
+                        <div class="service-duration">Delivery: 2-3 hours consultation</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>How to buy/sell Bitcoin</li>
+                            <li>Secure storage methods</li>
+                            <li>Wallet setup guidance</li>
+                            <li>Exchange recommendations</li>
+                            <li>Basic security practices</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20Basic%20Crypto%20Guide%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- AI & Robotics Services -->
+                <div class="service-card" data-category="ai">
+                    <div class="service-header">
+                        <div class="service-category">AI & Robotics</div>
+                        <h3 class="service-title">WhatsApp Chatbot</h3>
+                        <div class="service-price">KES 20,000 - 50,000</div>
+                        <div class="service-duration">Delivery: 2-4 weeks</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>AI-powered customer support</li>
+                            <li>24/7 automated responses</li>
+                            <li>Natural language processing</li>
+                            <li>Integration with your systems</li>
+                            <li>Training and maintenance</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20WhatsApp%20Chatbot%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Game Development Services -->
+                <div class="service-card" data-category="game">
+                    <div class="service-header">
+                        <div class="service-category">Game Development</div>
+                        <h3 class="service-title">Aviator-Style Crash Game</h3>
+                        <div class="service-price">KES 80,000+</div>
+                        <div class="service-duration">Delivery: 4-8 weeks</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>Custom crash game development</li>
+                            <li>Provably fair algorithm</li>
+                            <li>Admin dashboard</li>
+                            <li>Payment system integration</li>
+                            <li>User account management</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20Aviator-Style%20Crash%20Game%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Other Services -->
+                <div class="service-card" data-category="other">
+                    <div class="service-header">
+                        <div class="service-category">Other Services</div>
+                        <h3 class="service-title">IT Consultation</h3>
+                        <div class="service-price">KES 5,000/hr</div>
+                        <div class="service-duration">Flexible scheduling</div>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-features">
+                            <li>Technology strategy</li>
+                            <li>System architecture</li>
+                            <li>Software recommendations</li>
+                            <li>Digital transformation</li>
+                            <li>Microsoft Office solutions</li>
+                        </ul>
+                        <a href="https://wa.me/254746640048?text=Hi%20Stanley,%20I'm%20interested%20in%20your%20IT%20Consultation%20service.%20Can%20we%20discuss%20details?" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="service-item">
-          <i class="fas fa-palette service-icon"></i>
-          <h3>UI/UX Design</h3>
-          <p>Designing user-friendly and visually appealing interfaces.</p>
-        </div>
-        <div class="service-item">
-          <i class="fas fa-code service-icon"></i>
-          <h3>Software Development</h3>
-          <p>Developing custom software solutions for businesses and individuals.</p>
-        </div>
-        <div class="service-item">
-          <i class="fas fa-shield-alt service-icon"></i>
-          <h3>Cybersecurity</h3>
-          <p>Providing ethical hacking and security solutions to protect your systems.</p>
-        </div>
-        <div class="service-item">
-          <i class="fas fa-gamepad service-icon"></i>
-          <h3>Game Development</h3>
-          <p>Creating engaging and interactive games for various platforms.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Plans Section -->
-  <section id="pricing" class="animate-slideInLeft">
-    <div class="container">
-      <h2>Pricing Plans</h2>
-      <div class="pricing-grid">
-        <div class="pricing-item">
-          <h3>Basic</h3>
-          <p class="price">$500</p>
-          <ul>
-            <li>1 Website</li>
-            <li>Responsive Design</li>
-            <li>Basic SEO</li>
-            <li>1 Month Support</li>
-          </ul>
-          <a href="#contact" class="cta-button">Get Started</a>
-        </div>
-        <div class="pricing-item">
-          <h3>Premium</h3>
-          <p class="price">$1000</p>
-          <ul>
-            <li>Up to 3 Websites</li>
-            <li>Advanced UI/UX Design</li>
-            <li>Advanced SEO</li>
-            <li>3 Months Support</li>
-          </ul>
-          <a href="#contact" class="cta-button">Get Started</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Form Section -->
-<section id="contact" class="animate-fadeIn">
-  <div class="container">
-    <h2>Work with me</h2>
-    <p>Have a project in mind or want to work together? Let's discuss how I can help you!</p>
-    <form id="contact-form" action="https://formspree.io/f/xovealek" method="POST">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" placeholder="Subject" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-      </div>
-      <button type="submit" class="cta-button">Send Message</button>
-    </form>
-    <div id="form-status"></div> <!-- For success/error messages -->
-  </div>
-</section>
-
-  <!-- Footer Section -->
-  <footer>
-    <div class="footer-content">
-      <!-- Quick Links -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-            <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-            <li><a href="about">About Me</a></li>
-            <li><a href="skills">Skills</a></li>
-            <li><a href="blog">Blog</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a href="achievements">Achievements</a></li>
-            <li><a href="faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Social Media Links -->
-      <div class="footer-section social-media">
-        <h3>Follow Me</h3>
-        <div class="social-icons">
-            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
-                <i class="fab fa-facebook"></i>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
+                <a href="skills">Skills</a>
+                <a href="blog">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="achievements">Achievements</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <p class="copyright">© 2025 Stanley Makanga. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p><a href="privacy">Privacy Policy</a></p>
+            </div>
+            <a href="#" class="back-to-top">
+                <i class="fas fa-arrow-up"></i>
             </a>
-            <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
-                <i class="fab fa-linkedin"></i>
-            </a>
-          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i>
-          </a>
         </div>
-      </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Filter services
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                serviceCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Background animation bubbles
+        const bgAnimation = document.querySelector('.hero-bg-animation');
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.style.width = `${Math.random() * 60 + 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            bgAnimation.appendChild(bubble);
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
