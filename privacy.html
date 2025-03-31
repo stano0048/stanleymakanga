@@ -1,183 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Stanley Makanga</title>
-  <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Stanley Makanga</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --dark-bg: #2c3e50;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        .last-updated {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 70%;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .footer-bottom a {
+            color: #d0dfee;
+            text-decoration: none;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--dark-bg);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            main {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            main {
+                padding: 5rem 1rem 2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+            }
+
+            .footer-links a {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header with Quick Links -->
-
-    <!-- Header with Quick Links -->
-  <header>
-  <nav>
-    <div class="logo">
-        <a href="https://stanleymakanga.vercel.app">Stanley Makanga</a>
-    </div>
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-      <li><a href="about">About Me</a></li>
-      <li><a href="skills">Skills</a></li>
-      <li><a href="blog">Blog</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="services">Services</a></li>
-      <li><a href="achievements">Achievements</a></li>
-      <li><a href="faq">FAQ</a></li>
-    </ul>
-  </nav>
-</header>
-<script>
-  // Hamburger Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Toggle the 'active' class
-});
-</script>
-
-  <!-- Privacy Policy Section -->
-  <section id="privacy" class="animate-fadeIn">
-    <div class="container">
-      <h1>Privacy Policy</h1>
-      <p>Last updated: 07 - March - 2025</p>
-
-      <h2>1. Introduction</h2>
-      <p>
-        Welcome to Stanley Makanga's portfolio website. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.
-      </p>
-
-      <h2>2. Information We Collect</h2>
-      <p>
-        We may collect the following types of information:
-      </p>
-      <ul>
-        <li><strong>Personal Information</strong>: Name, email address, phone number, etc., when you fill out a contact form.</li>
-        <li><strong>Usage Data</strong>: Information about how you use our website, such as your IP address, browser type, and pages visited.</li>
-        <li><strong>Cookies</strong>: Small data files stored on your device to enhance your browsing experience.</li>
-      </ul>
-
-      <h2>3. How We Use Your Information</h2>
-      <p>
-        We use your information for the following purposes:
-      </p>
-      <ul>
-        <li>To respond to your inquiries and provide customer support.</li>
-        <li>To improve our website and services.</li>
-        <li>To send you updates and promotional materials (if you opt-in).</li>
-      </ul>
-
-      <h2>4. Cookies</h2>
-      <p>
-        We use cookies to:
-      </p>
-      <ul>
-        <li>Remember your preferences and settings.</li>
-        <li>Analyze website traffic and usage patterns.</li>
-      </ul>
-      <p>
-        You can disable cookies in your browser settings, but this may affect your experience on our website.
-      </p>
-
-      <h2>5. Data Sharing</h2>
-      <p>
-        We do not sell or share your personal information with third parties, except:
-      </p>
-      <ul>
-        <li>When required by law.</li>
-        <li>To protect our rights and property.</li>
-      </ul>
-
-      <h2>6. Data Security</h2>
-      <p>
-        We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. However, no internet transmission is 100% secure.
-      </p>
-
-      <h2>7. Your Rights</h2>
-      <p>
-        You have the right to:
-      </p>
-      <ul>
-        <li>Access, update, or delete your personal information.</li>
-        <li>Opt-out of receiving promotional emails.</li>
-        <li>Request a copy of your data.</li>
-      </ul>
-      <p>
-        To exercise these rights, please contact us at <a href="mailto:stanleymakanga45@gmail.com">stanleymakanga45@gmail.com</a>.
-      </p>
-
-      <h2>8. Changes to This Policy</h2>
-      <p>
-        We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date.
-      </p>
-
-      <h2>9. Contact Us</h2>
-      <p>
-        If you have any questions about this Privacy Policy, please contact us at:
-      </p>
-      <p>
-        Email: <a href="mailto:stanleymakanga45@gmail.com">stanleymakanga45@gmail.com</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer>
-    <div class="footer-content">
-      <!-- Quick Links -->
-      <div class="footer-section quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
-          <li><a href="about">About Me</a></li>
-          <li><a href="services">Services</a></li>
-          <li><a href="blog">Blog</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="achievements">Achievements</a></li>
-          <li><a href="faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Social Media Links -->
-      <div class="footer-section social-media">
-        <h3>Follow Me</h3>
-        <div class="social-icons">
-            <a href="https://facebook.com/its.stano" target="_blank" class="social-icon">
-                <i class="fab fa-facebook"></i>
-            </a>
-          <a href="www.linkedin.com/in/stanley-makanga-974393349" target="_blank" class="social-icon">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://x.com/stanleymakanga2" target="_blank" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://instagram.com/7_stanley7" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="mailto:stanleymakanga45@gmail.com" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i>
-          </a>
+    <!-- Header with Hamburger Menu -->
+    <header>
+        <div class="header-container">
+            <a href="https://stanleymakanga.vercel.app" class="logo">Stanley <span>Makanga</span></a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
+                    <li><a href="about">About Me</a></li>
+                    <li><a href="skills">Skills</a></li>
+                    <li><a href="blog">Blog</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-    </div>
+    </header>
 
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Stanley Makanga. All rights reserved. | <a href="privacy">Privacy Policy</a></p>
-    </div>
-  </footer>
+    <!-- Main Content -->
+    <main>
+        <h1 class="fade-in">Privacy Policy</h1>
+        <p class="last-updated fade-in">Last updated: 28 - March - 2025</p>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
+        <section class="fade-in">
+            <h2>1. Introduction</h2>
+            <p>Welcome to Stanley Makanga's portfolio website. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.</p>
+        </section>
+
+        <section class="fade-in">
+            <h2>2. Information We Collect</h2>
+            <p>We may collect the following types of information:</p>
+            <ul>
+                <li><strong>Personal Information:</strong> Name, email address, phone number, etc., when you fill out a contact form.</li>
+                <li><strong>Usage Data:</strong> Information about how you use our website, such as your IP address, browser type, and pages visited.</li>
+                <li><strong>Cookies:</strong> Small data files stored on your device to enhance your browsing experience.</li>
+            </ul>
+        </section>
+
+        <section class="fade-in">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use your information for the following purposes:</p>
+            <ul>
+                <li>To respond to your inquiries and provide customer support.</li>
+                <li>To improve our website and services.</li>
+                <li>To send you updates and promotional materials (if you opt-in).</li>
+            </ul>
+        </section>
+
+        <section class="fade-in">
+            <h2>4. Cookies</h2>
+            <p>We use cookies to:</p>
+            <ul>
+                <li>Remember your preferences and settings.</li>
+                <li>Analyze website traffic and usage patterns.</li>
+            </ul>
+            <p>You can disable cookies in your browser settings, but this may affect your experience on our website.</p>
+        </section>
+
+        <section class="fade-in">
+            <h2>5. Data Sharing</h2>
+            <p>We do not sell or share your personal information with third parties, except:</p>
+            <ul>
+                <li>When required by law.</li>
+                <li>To protect our rights and property.</li>
+            </ul>
+        </section>
+
+        <section class="fade-in">
+            <h2>6. Data Security</h2>
+            <p>We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. However, no internet transmission is 100% secure.</p>
+        </section>
+
+        <section class="fade-in">
+            <h2>7. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access, update, or delete your personal information.</li>
+                <li>Opt-out of receiving promotional emails.</li>
+                <li>Request a copy of your data.</li>
+            </ul>
+            <p>To exercise these rights, please contact us at <a href="mailto:stanleymakanga45@gmail.com">stanleymakanga45@gmail.com</a>.</p>
+        </section>
+
+        <section class="fade-in">
+            <h2>8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date.</p>
+        </section>
+
+        <section class="fade-in">
+            <h2>9. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+            <p>Email: <a href="mailto:stanleymakanga45@gmail.com">stanleymakanga45@gmail.com</a></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
+                <a href="skills">Skills</a>
+                <a href="blog">Blog</a>
+                <a href="contact">Contact</a>
+                <a href="services">Services</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <p class="copyright">&copy; 2025 Stanley Makanga. All rights reserved.</p>
+            <div class="footer-bottom">
+              <p><a href="privacy">Privacy Policy</a></p>
+          </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking on a link (for mobile)
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const checkVisibility = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+
+        // Check visibility on load and scroll
+        window.addEventListener('load', checkVisibility);
+        window.addEventListener('scroll', checkVisibility);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
