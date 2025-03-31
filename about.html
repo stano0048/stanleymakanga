@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Stanley Makanga | Computer Scientist & Tech Innovator</title>
+    <title>Stanley Makanga | Computer Scientist & Tech Innovator</title>
     <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -24,7 +24,10 @@
         }
         
         body {
+            margin: 0 auto;
             background-color: var(--light);
+            width: 100%;
+            padding: 0;
             color: var(--text);
             overflow-x: hidden;
         }
@@ -99,74 +102,19 @@
             font-size: 1.5rem;
         }
         
-        /* Hero Section */
-        .about-hero {
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            color: white;
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
             position: relative;
             overflow: hidden;
-            margin-top: 70px;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            z-index: 2;
-            padding: 2rem;
-        }
-        
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.3s;
-        }
-        
-        .hero-content h1 span {
-            color: var(--secondary);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.6s;
-        }
-        
-        .hero-bg-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .hero-bg-animation div {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(52, 152, 219, 0.1);
-            animation: float 15s infinite linear;
-        }
-        
-        /* About Sections */
-        .about-section {
-            padding: 5rem 2rem;
-            position: relative;
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
+            margin-bottom: 0;
         }
         
         .section-title h2 {
@@ -187,301 +135,83 @@
             border-radius: 2px;
         }
         
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Personal Story Section */
-        .personal-story {
-            background-color: white;
-        }
-        
-        .story-container {
+        /* Home Section */
+        #home {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
         }
         
-        .story-img {
-            flex: 1;
-            position: relative;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 1s ease;
-        }
-        
-        .story-img.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .story-img img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .story-img::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            width: 100%;
-            height: 100%;
-            border: 5px solid var(--secondary);
-            border-radius: 10px;
-            z-index: -1;
-        }
-        
-        .story-content {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 1s ease;
-        }
-        
-        .story-content.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .story-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .story-content p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: #555;
-        }
-        
-        /* Skills Section */
-        .skills-section {
-            background-color: var(--light);
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .skill-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .skill-card.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .skill-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .skill-card p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .skill-tag {
-            background-color: var(--light);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        /* Experience Section */
-        .experience-section {
-            background-color: white;
-        }
-        
-        .timeline {
-            position: relative;
+        .home-content {
             max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 0;
+            z-index: 2;
         }
         
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background-color: var(--secondary);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-        
-        .timeline-item.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .timeline-item:nth-child(odd) {
-            padding-right: calc(50% + 2rem);
-            text-align: right;
-        }
-        
-        .timeline-item:nth-child(even) {
-            padding-left: calc(50% + 2rem);
-            text-align: left;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--secondary);
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px var(--secondary);
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: calc(50% - 10px);
-        }
-        
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: calc(50% - 10px);
-        }
-        
-        .timeline-content {
-            background-color: var(--light);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .timeline-date {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .timeline-description {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* Education Section */
-        .education-section {
-            background-color: var(--light);
-        }
-        
-        .education-container {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-        
-        .education-img {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 1s ease;
-        }
-        
-        .education-img.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .education-img img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .education-content {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 1s ease;
-        }
-        
-        .education-content.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .education-item {
-            margin-bottom: 2rem;
-        }
-        
-        .education-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .education-item .degree {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        
-        .education-item .date {
-            color: #666;
+        .home-content h1 {
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            display: block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
         }
         
-        .education-item p {
-            color: #555;
-            line-height: 1.6;
+        .home-content h1 span {
+            color: var(--secondary);
         }
-
+        
+        .home-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.6s;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.9s;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
         .social-icons {
             display: flex;
             justify-content: center;
@@ -503,53 +233,24 @@
             transform: translateY(-5px);
         }
         
-        /* Goals Section */
-        .goals-section {
-            background-color: white;
+        .home-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
         }
         
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        .home-bg-animation div {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.1);
+            animation: float 15s infinite linear;
         }
         
-        .goal-card {
-            background-color: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
         
-        .goal-card.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .goal-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .goal-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .goal-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .goal-card p {
-            color: #666;
-            line-height: 1.6;
-        }
         
         /* Footer */
         footer {
@@ -557,6 +258,9 @@
             color: white;
             text-align: center;
             padding: 2rem;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .footer-content {
@@ -580,10 +284,6 @@
         .footer-links a:hover {
             color: var(--secondary);
         }
-        
-        .copyright {
-            margin-bottom: 1rem;
-        }
 
         .footer-bottom {
             margin-top: 20px;
@@ -591,6 +291,7 @@
             padding-top: 10px;
             text-align: center;
         }
+        
         .footer-bottom p {
             margin: 0;
             font-size: 0.9rem;
@@ -602,6 +303,10 @@
         }
         .footer-bottom a:hover {
             text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-bottom: 1rem;
         }
         
         .back-to-top {
@@ -648,37 +353,21 @@
         
         /* Responsive Design */
         @media (max-width: 992px) {
-            .story-container, .education-container {
+            .about-container, .contact-container {
                 flex-direction: column;
             }
             
-            .story-img, .story-content, .education-img, .education-content {
+            .about-img, .about-content, .contact-info, .contact-form {
                 flex: none;
                 width: 100%;
             }
             
-            .story-img, .education-img {
+            .about-img {
                 margin-bottom: 2rem;
             }
             
-            .timeline::before {
-                left: 31px;
-            }
-            
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 70px;
-                padding-right: 0;
-                text-align: left;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-dot,
-            .timeline-item:nth-child(even) .timeline-dot {
-                left: 21px;
-            }
-            
-            .skills-grid, .goals-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .portfolio-grid, .blog-grid, .services-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
         
@@ -705,11 +394,11 @@
                 display: block;
             }
             
-            .hero-content h1 {
+            .home-content h1 {
                 font-size: 2.5rem;
             }
             
-            .hero-content p {
+            .home-content p {
                 font-size: 1rem;
             }
             
@@ -717,43 +406,177 @@
                 font-size: 2rem;
             }
             
-            .skills-grid, .goals-grid {
+            .portfolio-grid, .blog-grid, .services-container {
                 grid-template-columns: 1fr;
             }
         }
+        
+        @media (max-width: 576px) {
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .portfolio-filter {
+                flex-wrap: wrap;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .faq-section {
+            margin-bottom: 0;
+            padding: 0%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .faq-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        .section-title .icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .faq-item {
+          margin-top: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(58, 134, 255, 0.05);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 25px;
+            border-top: 1px solid transparent;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 25px 25px;
+            border-top: 1px solid #eee;
+        }
+        
+        .faq-answer p {
+            margin-top: 0;
+        }
+        
+        .faq-answer ul {
+            padding-left: 20px;
+        }
+        
+        .faq-answer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            background-color: rgba(58, 134, 255, 0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
     </style>
 </head>
-<body>
+<body style="margin: 0 auto;">
     <!-- Navigation -->
     <nav id="navbar">
         <div class="logo">Stanley<span> Makanga</span></div>
         <div class="nav-links">
-            <a href="https://stanleymakanga.vercel.app">Home</a>
+          <a href="https://stanleymakanga.vercel.app">Home</a>
+            <a href="about">About Me</a>
             <a href="skills">Skills</a>
             <a href="blog">Blog</a>
             <a href="contact">Contact</a>
             <a href="services">Services</a>
+            <a href="team">My Team</a>
             <a href="achievements">Achievements</a>
-            <a href="faq">FAQ</a>
         </div>
         <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
     </nav>
     
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <div class="hero-bg-animation">
+    <!-- Home Section -->
+    <section id="home">
+        <div class="home-bg-animation">
             <div style="width: 50px; height: 50px; top: 20%; left: 10%;"></div>
             <div style="width: 80px; height: 80px; top: 60%; left: 70%;"></div>
             <div style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
             <div style="width: 60px; height: 60px; top: 30%; left: 80%;"></div>
             <div style="width: 40px; height: 40px; top: 70%; left: 20%;"></div>
         </div>
-        <div class="hero-content">
-            <h1>My <span>Story</span></h1>
-            <p>Discover my journey, skills, and aspirations in technology and finance</p>
-
+        <div class="home-content">
+            <h1>Frequently Asked <span>Questions</span></h1>
+            <p>Find answers to common questions about my services, pricing, and processes. If you don't find what you're looking for, feel free to contact me.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+            </div>
             <div class="social-icons">
                 <a href="https://instagram.com/7_stanley7" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:stanleymakanga45@gmail.com" target="_blank"><i class="fas fa-envelope"></i>
@@ -762,277 +585,271 @@
                 <a href="https://facebook.com/its.stano" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
+    </section>
+    <section>
+      <div class="container">
+        <section id="general" style="margin-bottom: 0;" class="faq-section">
+            <div class="section-title">
+                <span class="icon">📌</span>
+                <h2>General Questions</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What services do you offer?</div>
+                <div class="faq-answer">
+                    <p>I specialize in <span class="highlight">web development, cybersecurity, game development, crypto consulting, automation, and IT solutions</span>. I create <span class="highlight">e-commerce websites, online casino platforms, WhatsApp chatbots, and more</span>. Visit my <a href="services" style="color: #2980b9;">Services Page</a> for details.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How much do you charge for a website?</div>
+                <div class="faq-answer">
+                    <p>The price depends on the complexity of the website. Here's a quick breakdown:</p>
+                    <ul>
+                        <li><strong>Basic website (5 pages)</strong> – KES 15,000 – 30,000</li>
+                        <li><strong>E-Commerce website (with M-Pesa)</strong> – KES 40,000 – 80,000</li>
+                        <li><strong>Custom projects (Casino, AI, Automation)</strong> – Starts from KES 60,000+</li>
+                    </ul>
+                    <p>For an exact quote, <a href="#contact">Contact Me</a> with your project details.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How long does it take to develop a website?</div>
+                <div class="faq-answer">
+                    <p>It depends on the project:</p>
+                    <ul>
+                        <li><strong>Basic website</strong> – 5 to 7 days</li>
+                        <li><strong>E-commerce site</strong> – 2 to 4 weeks</li>
+                        <li><strong>Casino or AI-based platform</strong> – 1 to 3 months</li>
+                    </ul>
+                    <p>For urgent projects, I offer <span class="highlight">priority development at an extra cost</span>.</p>
+                </div>
+            </div>
+        </section>
         
-    </section>
-    
-    <!-- Personal Story Section -->
-    <section class="about-section personal-story">
-        <div class="section-title">
-            <h2>Who I Am</h2>
-        </div>
-        <div class="section-container">
-            <div class="story-container">
-                <div class="story-img">
-                    <img src="stanley-makanga.jpg" alt="Stanley Makanga">
-                </div>
-                <div class="story-content">
-                    <h3>A Passionate Developer & Tech Enthusiast</h3>
-                    <p>I'm Stanley Makanga, a passionate developer and website designer with a keen interest in programming, ethical hacking, robotics, video game development, and DIY electronics. My journey in technology began at a young age when I first discovered the magic of computers and how they could bring ideas to life.</p>
-                    <p>What started as simple HTML websites has evolved into a deep fascination with all aspects of technology. I love the challenge of solving complex problems and creating innovative solutions that make a difference. Whether it's building secure web applications, developing automated trading algorithms, or experimenting with robotics, I'm constantly pushing myself to learn and grow.</p>
-                    <p>Beyond technology, I have a strong interest in finance and how it intersects with the tech world. This dual passion has led me to explore areas like blockchain technology, algorithmic trading, and financial technology solutions.</p>
+        <section id="web-dev" class="faq-section">
+            <div class="section-title">
+                <span class="icon">💻</span>
+                <h2>Web Development & IT Solutions</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you provide website maintenance services?</div>
+                <div class="faq-answer">
+                    <p>Yes! I offer <span class="highlight">website updates, bug fixes, security audits, and speed optimization</span>. I also provide <span class="highlight">monthly maintenance plans</span> upon request.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Skills Section -->
-    <section class="about-section skills-section">
-        <div class="section-title">
-            <h2>Skills & Expertise</h2>
-        </div>
-        <div class="section-container">
-            <div class="skills-grid">
-                <!-- Skill 1 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Proficient in building responsive, user-friendly websites and web applications using modern technologies and frameworks.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">MySQL</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 2 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <h3>Cryptocurrency</h3>
-                    <p>Experienced in cryptocurrency investing and trading, with over $100,000 worth of Bitcoin transactions and automated trading strategies.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Bitcoin</span>
-                        <span class="skill-tag">Trading Bots</span>
-                        <span class="skill-tag">Blockchain</span>
-                        <span class="skill-tag">Technical Analysis</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 3 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Robotics & Electronics</h3>
-                    <p>Passionate about building DIY electronics projects and robotics systems using platforms like Arduino and Raspberry Pi.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Arduino</span>
-                        <span class="skill-tag">Raspberry Pi</span>
-                        <span class="skill-tag">IoT</span>
-                        <span class="skill-tag">Embedded Systems</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 4 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Cybersecurity</h3>
-                    <p>Knowledgeable in ethical hacking techniques and cybersecurity best practices to build secure systems and applications.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Penetration Testing</span>
-                        <span class="skill-tag">OWASP</span>
-                        <span class="skill-tag">Network Security</span>
-                        <span class="skill-tag">Cryptography</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 5 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-commerce Development</h3>
-                    <p>Experience in building dynamic online shop systems with admin panels, payment integration, and inventory management.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">E-commerce</span>
-                        <span class="skill-tag">Payment Gateways</span>
-                        <span class="skill-tag">Admin Panels</span>
-                        <span class="skill-tag">Inventory Systems</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 6 -->
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>AI & Automation</h3>
-                    <p>Fascinated by artificial intelligence and automation, with experience building bots and automated systems.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Automation</span>
-                        <span class="skill-tag">Bots</span>
-                    </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can you redesign an existing website?</div>
+                <div class="faq-answer">
+                    <p>Yes! If your website needs a <span class="highlight">modern look, better performance, or M-Pesa integration</span>, I can help. Just <a href="contact" style="color: #3498db;">Contact Me</a> with your site details.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Experience Section -->
-    <section class="about-section experience-section">
-        <div class="section-title">
-            <h2>My Experience</h2>
-        </div>
-        <div class="section-container">
-            <div class="timeline">
-                <!-- Experience 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - Present</div>
-                        <h3 class="timeline-title">Freelance Web Developer</h3>
-                        <p class="timeline-description">Building custom websites and web applications for clients across various industries, focusing on responsive design and user experience.</p>
-                    </div>
-                </div>
-                
-                <!-- Experience 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022 - Present</div>
-                        <h3 class="timeline-title">Cryptocurrency Trader & Developer</h3>
-                        <p class="timeline-description">Developed and implemented automated trading strategies, successfully transacting over $100,000 worth of Bitcoin and other cryptocurrencies.</p>
-                    </div>
-                </div>
-                
-                <!-- Experience 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024 - 2025</div>
-                        <h3 class="timeline-title">E-commerce Developer</h3>
-                        <p class="timeline-description">Built dynamic online shop systems with custom admin panels, payment integration, and inventory management features.</p>
-                    </div>
-                </div>
-                
-                <!-- Experience 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - Present</div>
-                        <h3 class="timeline-title">Cybersecurity Researcher</h3>
-                        <p class="timeline-description">Conducted security audits and penetration testing for various websites, identifying and helping to fix critical vulnerabilities.</p>
-                    </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you develop mobile apps?</div>
+                <div class="faq-answer">
+                    <p>Currently, I focus on <span class="highlight">web-based applications and progressive web apps (PWAs)</span>, but I can assist with <span class="highlight">mobile-friendly designs and automation scripts</span>.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Education Section -->
-    <section class="about-section education-section">
-        <div class="section-title">
-            <h2>Education</h2>
-        </div>
-        <div class="section-container">
-            <div class="education-container">
-                <div class="education-img">
-                    <img src="stanley-makanga1.jpg" alt="Education">
-                </div>
-                <div class="education-content">
-                    <div class="education-item">
-                        <h3>Karatina University</h3>
-                        <span class="degree">Bachelor of Science in Computer Science</span>
-                        <span class="date">2023 - Present</span>
-                        <p>Currently pursuing a degree in Computer Science with coursework in programming, algorithms, data structures, computer networks, and software engineering.</p>
-                    </div>
-                    
-                    <div class="education-item">
-                        <h3>Online Learning</h3>
-                        <span class="degree">Certificatation in Finance</span>
-                        <span class="date">2022 - Present</span>
-                        <p>Concurrently pursuing a Finance degree to complement my technical skills with financial expertise, focusing on financial analysis, investments, and economic principles.</p>
-                    </div>
-                    
-                    <div class="education-item">
-                        <h3>Online Learning</h3>
-                        <span class="degree">Various Certifications & Courses</span>
-                        <span class="date">2023 - Present</span>
-                        <p>Continuously expanding my knowledge through online platforms like Coursera, Udemy, and edX, with certifications in web development, cybersecurity, and blockchain technology.</p>
-                    </div>
+        </section>
+        
+        <section id="cybersecurity" class="faq-section">
+            <div class="section-title">
+                <span class="icon">🔒</span>
+                <h2>Cybersecurity & Hacking Services</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can you help secure my website from hackers?</div>
+                <div class="faq-answer">
+                    <p>Yes! I offer <span class="highlight">penetration testing, security audits, and vulnerability fixes</span> to keep your site safe. Prices start from <span class="highlight">KES 10,000</span> for a basic security check.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Goals Section -->
-    <section class="about-section goals-section">
-        <div class="section-title">
-            <h2>My Goals</h2>
-        </div>
-        <div class="section-container">
-            <div class="goals-grid">
-                <!-- Goal 1 -->
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Academic Goals</h3>
-                    <p>Complete my Bachelor's degree in Computer Science , then pursue a master's degree focusing on the intersection of technology and finance, such as financial technology or computational finance.</p>
-                </div>
-                
-                <!-- Goal 2 -->
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>Professional Goals</h3>
-                    <p>Establish myself as an expert in fintech solutions, combining my programming skills with financial knowledge to develop innovative products in areas like algorithmic trading, blockchain applications, and financial analytics.</p>
-                </div>
-                
-                <!-- Goal 3 -->
-                <div class="goal-card">
-                    <div class="goal-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Innovation Goals</h3>
-                    <p>Develop and launch my own tech products, potentially in the areas of automated trading systems, cybersecurity tools, or educational technology platforms that make complex technical concepts accessible.</p>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you provide ethical hacking services?</div>
+                <div class="faq-answer">
+                    <p>I only offer <span class="highlight">legal cybersecurity solutions</span> to help businesses secure their platforms from potential attacks.</p>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <section id="crypto" class="faq-section">
+            <div class="section-title">
+                <span class="icon">💰</span>
+                <h2>Crypto & Financial Consulting</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can you help me invest in cryptocurrency?</div>
+                <div class="faq-answer">
+                    <p>I offer <span class="highlight">basic and advanced crypto investment strategies</span>, but I don't trade on behalf of clients. My <span class="highlight">consultations start at KES 3,000</span>.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I avoid crypto scams?</div>
+                <div class="faq-answer">
+                    <p>Always use <span class="highlight">trusted wallets, verify exchanges, and NEVER share your private keys</span>. I can help you <span class="highlight">set up a secure crypto portfolio</span>.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gaming" class="faq-section">
+            <div class="section-title">
+                <span class="icon">🎮</span>
+                <h2>Game Development & Casino Setup</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can you develop an Aviator-style crash game?</div>
+                <div class="faq-answer">
+                    <p>Yes! I can build <span class="highlight">custom betting games like Aviator, Spin & Win, and Roulette</span> with M-Pesa integration. Prices start from <span class="highlight">KES 80,000</span>.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do you ensure fairness in online casino games?</div>
+                <div class="faq-answer">
+                    <p>I use <span class="highlight">provably fair algorithms, random number generators (RNG), and security encryption</span> to guarantee transparency.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ai" class="faq-section">
+            <div class="section-title">
+                <span class="icon">⚡</span>
+                <h2>AI & Automation</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can you build an AI chatbot for my business?</div>
+                <div class="faq-answer">
+                    <p>Yes! I develop <span class="highlight">WhatsApp chatbots</span> that handle customer inquiries, automate sales, and integrate with your website. Pricing starts from <span class="highlight">KES 20,000</span>.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can you automate tasks for my business?</div>
+                <div class="faq-answer">
+                    <p>Yes! I build <span class="highlight">custom automation scripts</span> for <span class="highlight">data scraping, bulk messaging, and business processes</span>.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="payments" class="faq-section">
+            <div class="section-title">
+                <span class="icon">💳</span>
+                <h2>Payments & Support</h2>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What payment methods do you accept?</div>
+                <div class="faq-answer">
+                    <p>I accept <span class="highlight">M-Pesa, bank transfers, Bitcoin, and PayPal</span>.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you offer refunds?</div>
+                <div class="faq-answer">
+                    <p>Due to the nature of digital work, I <span class="highlight">don't offer refunds</span> once a project has started. However, I ensure <span class="highlight">100% client satisfaction</span> through proper planning.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I get started with a project?</div>
+                <div class="faq-answer">
+                    <ol>
+                        <li><strong>Contact me</strong> with your project details.</li>
+                        <li>I provide a <strong>custom quote</strong> and project timeline.</li>
+                        <li><strong>Initial payment</strong> is required before work begins.</li>
+                        <li>Development starts, with updates at every stage.</li>
+                        <li><strong>Final review & project handover</strong> upon full payment.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </div>
     </section>
     
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="https://stanleymakanga.vercel.app">Home</a>
+              <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
                 <a href="skills">Skills</a>
                 <a href="blog">Blog</a>
                 <a href="contact">Contact</a>
                 <a href="services">services</a>
                 <a href="achievements">Achievements</a>
-                <a href="faq">FAQ</a>
             </div>
             <p class="copyright">© 2025 Stanley Makanga. All Rights Reserved.</p>
-            <div class="footer-bottom">
-                <p><a href="privacy">Privacy Policy</a></p>
-            </div>
-            <a href="#" class="back-to-top">
+                <div class="footer-bottom">
+                    <p><a href="privacy">Privacy Policy</a></p>
+                </div>
+            <a href="#home" class="back-to-top">
                 <i class="fas fa-arrow-up"></i>
             </a>
         </div>
     </footer>
     
     <script>
+      // FAQ toggle functionality
+      document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                // Close all other answers first
+                document.querySelectorAll('.faq-answer').forEach(answer => {
+                    if (answer !== question.nextElementSibling) {
+                        answer.classList.remove('active');
+                        answer.previousElementSibling.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current answer
+                const answer = question.nextElementSibling;
+                question.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.faq-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
         // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1063,7 +880,7 @@
         
         // Scroll animations
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.story-img, .story-content, .skill-card, .timeline-item, .education-img, .education-content, .goal-card');
+            const elements = document.querySelectorAll('.about-img, .about-content, .portfolio-item, .blog-card, .service-card, .contact-info, .contact-form');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1074,6 +891,34 @@
                 }
             });
         }
+        
+        // Filter portfolio items
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Initialize animations on load
+        window.addEventListener('load', animateOnScroll);
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1094,7 +939,7 @@
         });
         
         // Background animation bubbles
-        const bgAnimation = document.querySelector('.hero-bg-animation');
+        const bgAnimation = document.querySelector('.home-bg-animation');
         for (let i = 0; i < 15; i++) {
             const bubble = document.createElement('div');
             bubble.style.width = `${Math.random() * 60 + 20}px`;
@@ -1105,11 +950,6 @@
             bubble.style.animationDelay = `${Math.random() * 5}s`;
             bgAnimation.appendChild(bubble);
         }
-        
-        // Initialize animations on load
-        window.addEventListener('load', animateOnScroll);
-        // Animate on scroll
-        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
