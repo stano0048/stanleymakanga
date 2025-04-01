@@ -53,11 +53,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://stanleymakanga.vercel.app/index.html</loc>
-  <lastmod>2025-03-30T09:27:36+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
   <loc>https://stanleymakanga.vercel.app/ethical-hacking</loc>
   <lastmod>2025-03-30T09:27:36+00:00</lastmod>
   <priority>0.64</priority>
@@ -72,6 +67,5 @@
   <lastmod>2025-03-30T09:27:37+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-
 
 </urlset>
