@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stanley Makanga: Computer Scientist, Crypto Enthusiast, Ethical Hacker & Robotics Engineer. Explore my portfolio for cybersecurity projects, robotics innovations, and JavaScript expertise. Based in Kenya.">
+    <title>Essential Cybersecurity Practices for Developers | Stanley Makanga</title>
+    <link rel="icon" type="image/png" href="stanleymakanga2.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --cyber-blue: #0066cc;
+            --cyber-dark: #0a1a2e;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--cyber-dark);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--cyber-blue);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--cyber-blue);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cyber-blue);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .blog-hero {
+            background: linear-gradient(135deg, var(--cyber-dark), var(--cyber-blue));
+            color: var(--white);
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .meta-info i {
+            font-size: 0.9rem;
+        }
+
+        .blog-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            animation: fadeIn 1s ease-out 0.9s both;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blog Content */
+        .blog-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .intro-section.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .practice-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .practice-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .practice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .practice-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-dark));
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .practice-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--cyber-dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .practice-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-dark));
+            border-radius: 3px;
+        }
+
+        .practice-content {
+            margin-bottom: 2rem;
+        }
+
+        .practice-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .key-recommendations {
+            padding: 1.5rem;
+            background-color: rgba(0, 102, 204, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--cyber-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .key-recommendations h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--cyber-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .key-recommendations h3 i {
+            font-size: 1.1rem;
+        }
+
+        .key-recommendations ul {
+            padding-left: 1.5rem;
+        }
+
+        .key-recommendations li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .key-recommendations li::before {
+            content: '•';
+            position: absolute;
+            left: -1rem;
+            color: var(--cyber-blue);
+            font-weight: bold;
+        }
+
+        .example-tip {
+            padding: 1.5rem;
+            background-color: rgba(10, 26, 46, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--cyber-dark);
+        }
+
+        .example-tip h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--cyber-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .example-tip h4 i {
+            color: var(--cyber-blue);
+        }
+
+        /* Conclusion Section */
+        .conclusion-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .conclusion-section.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .conclusion-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--cyber-dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .conclusion-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-dark));
+            border-radius: 3px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--cyber-dark), var(--cyber-blue));
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 4rem 0;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .newsletter.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--white);
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cyber-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            margin: 0 1rem 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--cyber-blue);
+        }
+
+        .social-footer {
+            margin-bottom: 2rem;
+        }
+
+        .social-footer a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 0.8rem;
+            transition: var(--transition);
+        }
+
+        .social-footer a:hover {
+            color: var(--cyber-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--cyber-dark);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog-hero p {
+                font-size: 1.1rem;
+            }
+
+            .practice-card {
+                padding: 2rem;
+            }
+
+            .practice-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-radius: 50px;
+                margin-bottom: 1rem;
+            }
+
+            .newsletter-form button {
+                border-radius: 50px;
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .practice-card {
+                padding: 1.5rem;
+            }
+
+            .newsletter h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Hamburger Menu -->
+    <header>
+        <div class="header-container">
+            <a href="https://stanleymakanga.vercel.app" class="logo">Stanley<span>Makanga</span></a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
+                    <li><a href="about">About Me</a></li>
+                    <li><a href="skills">Skills</a></li>
+                    <li><a href="achievements">Achievements</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="hero-content">
+            <h1>Essential Cybersecurity Practices for Developers</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-user"></i> Stanley Makanga</span>
+                <span><i class="far fa-calendar-alt"></i> January 10, 2025</span>
+                <span><i class="fas fa-tag"></i> Cybersecurity</span>
+            </div>
+            <p>Learn the fundamental security practices every developer should implement to protect their applications.</p>
+            <a href="#practices" class="cta-button">Explore Practices</a>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="blog-container">
+        <!-- Introduction -->
+        <section class="intro-section" id="practices">
+            <p>In today's digital landscape, cybersecurity isn't just an add-on—it's a core requirement for every application. As developers, incorporating robust security measures into every stage of development is critical for safeguarding sensitive data, maintaining user trust, and reducing the risk of breaches. In this article, we explore the fundamental security practices you should adopt to protect your applications and ensure a secure software development lifecycle (SDLC).</p>
+        </section>
+
+        <!-- Practice 1 -->
+        <article class="practice-card">
+            <div class="practice-number">1</div>
+            <h2>Embrace Secure Coding Practices</h2>
+            <div class="practice-content">
+                <p>Secure coding is the foundation of any safe application. By following best practices from organizations such as OWASP and NIST, you can minimize common vulnerabilities like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF).</p>
+                
+                <div class="key-recommendations">
+                    <h3><i class="fas fa-key"></i> Key Recommendations</h3>
+                    <ul>
+                        <li>Validate and Sanitize Inputs: Always treat user input as untrusted. Use allowlists for acceptable data, validate on the server side, and encode outputs appropriately.</li>
+                        <li>Avoid Hardcoding Secrets: Store sensitive information like API keys or credentials using dedicated secrets management tools (e.g., AWS Secrets Manager or HashiCorp Vault).</li>
+                        <li>Utilize Secure Libraries and Frameworks: Leverage trusted components and keep dependencies up to date to prevent supply chain attacks.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Example Tip</h4>
+                    <p>Instead of using vulnerable functions like <code>strcpy</code> in C, use safer alternatives such as <code>strncpy</code> to protect against buffer overflows.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Practice 2 -->
+        <article class="practice-card">
+            <div class="practice-number">2</div>
+            <h2>Implement Strong Authentication and Access Controls</h2>
+            <div class="practice-content">
+                <p>Ensuring that only authorized users can access your application is paramount. Strengthening authentication and access controls helps prevent unauthorized access and reduces the potential damage in case of a breach.</p>
+                
+                <div class="key-recommendations">
+                    <h3><i class="fas fa-key"></i> Key Recommendations</h3>
+                    <ul>
+                        <li>Adopt Multi-Factor Authentication (MFA): Add layers to your login process—combine passwords with biometric verification or one-time codes.</li>
+                        <li>Enforce the Principle of Least Privilege: Grant users and services only the permissions necessary for their roles.</li>
+                        <li>Secure Session Management: Use secure, HttpOnly cookies, regenerate session identifiers after login, and implement session timeouts.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Example Tip</h4>
+                    <p>Implement role-based access control (RBAC) to ensure that critical operations are accessible only to users with the appropriate privileges.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Practice 3 -->
+        <article class="practice-card">
+            <div class="practice-number">3</div>
+            <h2>Encrypt Sensitive Data</h2>
+            <div class="practice-content">
+                <p>Encryption is essential for protecting sensitive information both at rest and in transit. It ensures that even if data is intercepted, it remains unreadable to unauthorized users.</p>
+                
+                <div class="key-recommendations">
+                    <h3><i class="fas fa-key"></i> Key Recommendations</h3>
+                    <ul>
+                        <li>Use HTTPS (SSL/TLS): Always encrypt data during transmission.</li>
+                        <li>Apply Strong Encryption Standards: For data storage, use protocols such as AES-256.</li>
+                        <li>Secure Key Management: Store encryption keys securely and rotate them periodically to reduce exposure.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Example Tip</h4>
+                    <p>Ensure that APIs transmitting sensitive information are secured with TLS and that data stored in databases is encrypted using industry-standard methods.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Practice 4 -->
+        <article class="practice-card">
+            <div class="practice-number">4</div>
+            <h2>Regularly Update, Patch, and Test Your Code</h2>
+            <div class="practice-content">
+                <p>Outdated software and unpatched vulnerabilities are among the easiest entry points for attackers. Regular updates and thorough testing help you stay ahead of emerging threats.</p>
+                
+                <div class="key-recommendations">
+                    <h3><i class="fas fa-key"></i> Key Recommendations</h3>
+                    <ul>
+                        <li>Keep Dependencies Current: Monitor third-party libraries for vulnerabilities and apply updates promptly.</li>
+                        <li>Conduct Code Reviews and Security Testing: Use both static (SAST) and dynamic (DAST) application security testing tools to catch issues early.</li>
+                        <li>Perform Penetration Testing: Regularly simulate real-world attacks to assess the resilience of your application.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Example Tip</h4>
+                    <p>Integrate automated vulnerability scanning tools into your CI/CD pipeline to detect and remediate issues before deployment.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Practice 5 -->
+        <article class="practice-card">
+            <div class="practice-number">5</div>
+            <h2>Educate and Foster a Security-First Culture</h2>
+            <div class="practice-content">
+                <p>Security is a continuous journey. Keeping yourself and your team informed about the latest threats and mitigation strategies is critical to maintaining a secure environment.</p>
+                
+                <div class="key-recommendations">
+                    <h3><i class="fas fa-key"></i> Key Recommendations</h3>
+                    <ul>
+                        <li>Regular Training: Participate in cybersecurity webinars, workshops, and certification programs.</li>
+                        <li>Stay Informed: Follow reputable security blogs, forums, and organizations like OWASP or NIST.</li>
+                        <li>Promote a Security-First Mindset: Encourage all team members to consider security implications at every stage of development.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Example Tip</h4>
+                    <p>Set up regular internal security meetings or "lunch and learn" sessions to discuss recent vulnerabilities and share best practices.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Conclusion Section -->
+        <section class="conclusion-section">
+            <h2>Conclusion</h2>
+            <p>By integrating these essential cybersecurity practices into your development process, you not only protect your applications but also build trust with your users. Secure coding, strong authentication, robust encryption, continuous testing, and a security-aware culture are the cornerstones of resilient application development. Remember, cybersecurity is not a one-time effort—it's an ongoing commitment to building a safer digital world.</p>
+            <p>Learn the fundamental security practices every developer should implement to protect their applications. Adopt these strategies today to ensure your code is secure, your data is protected, and your users remain confident in your software.</p>
+            <p>Feel free to share your thoughts or ask questions in the comments below. For more articles on secure development and cybersecurity best practices, subscribe to our blog or follow us on social media.</p>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h2>Stay Updated on Cybersecurity</h2>
+            <p>Subscribe to my newsletter for weekly insights on secure development, cybersecurity trends, and best practices.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
+                <a href="skills">Skills</a>
+                <a href="contact">Contact</a>
+                <a href="services">services</a>
+                <a href="achievements">Achievements</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <div class="social-footer">
+                <a href="https://x.com/stanleymakanga2"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/stanley.makanga/"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/its.stano"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Stanley Makanga. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking on a link (for mobile)
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Scroll Animation
+        const introSection = document.querySelector('.intro-section');
+        const practiceCards = document.querySelectorAll('.practice-card');
+        const conclusionSection = document.querySelector('.conclusion-section');
+        const newsletter = document.querySelector('.newsletter');
+
+        const checkVisibility = () => {
+            // Intro section animation
+            const introTop = introSection.getBoundingClientRect().top;
+            if (introTop < window.innerHeight - 100) {
+                introSection.classList.add('visible');
+            }
+
+            // Practice cards animation
+            practiceCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+
+            // Conclusion section animation
+            const conclusionTop = conclusionSection.getBoundingClientRect().top;
+            if (conclusionTop < window.innerHeight - 100) {
+                conclusionSection.classList.add('visible');
+            }
+
+            // Newsletter animation
+            const newsletterTop = newsletter.getBoundingClientRect().top;
+            if (newsletterTop < window.innerHeight - 100) {
+                newsletter.classList.add('visible');
+            }
+        };
+
+        // Check visibility on load and scroll
+        window.addEventListener('load', checkVisibility);
+        window.addEventListener('scroll', checkVisibility);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
