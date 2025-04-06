@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerging Trends in Cryptocurrency for 2024 | Stanley Makanga</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --dark-bg: #2c3e50;
+            --white: #ffffff;
+            --crypto-blue: #2762e9;
+            --crypto-purple: #6e44ff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .blog-hero {
+            background: linear-gradient(135deg, var(--crypto-blue), var(--crypto-purple));
+            color: var(--white);
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .meta-info i {
+            font-size: 0.9rem;
+        }
+
+        .blog-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            animation: fadeIn 1s ease-out 0.9s both;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blog Content */
+        .blog-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .trend-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .trend-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .trend-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--crypto-blue), var(--crypto-purple));
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .trend-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .trend-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--crypto-blue), var(--crypto-purple));
+            border-radius: 3px;
+        }
+
+        .trend-overview {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(39, 98, 233, 0.05);
+            border-left: 4px solid var(--crypto-blue);
+            border-radius: 0 5px 5px 0;
+        }
+
+        .trend-content {
+            margin-bottom: 2rem;
+        }
+
+        .trend-content h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary-color);
+        }
+
+        .trend-content p {
+            margin-bottom: 1rem;
+        }
+
+        .investment-opportunity {
+            padding: 1.5rem;
+            background-color: rgba(110, 68, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--crypto-purple);
+        }
+
+        .investment-opportunity h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--crypto-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .investment-opportunity h4 i {
+            font-size: 1.1rem;
+        }
+
+        .investment-opportunity ul {
+            padding-left: 1.5rem;
+        }
+
+        .investment-opportunity li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .investment-opportunity li::before {
+            content: '→';
+            position: absolute;
+            left: -1.2rem;
+            color: var(--crypto-purple);
+        }
+
+        /* Bonus Section */
+        .bonus-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .bonus-section.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .bonus-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .bonus-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .bonus-topic {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: calc(33.333% - 1.5rem);
+            min-width: 250px;
+            transition: var(--transition);
+        }
+
+        .bonus-topic:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .bonus-topic h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bonus-topic h3 i {
+            color: var(--crypto-blue);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--crypto-blue), var(--crypto-purple));
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 4rem 0;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .newsletter.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--white);
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            margin: 0 1rem 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-footer {
+            margin-bottom: 2rem;
+        }
+
+        .social-footer a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 0.8rem;
+            transition: var(--transition);
+        }
+
+        .social-footer a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .bonus-topic {
+                width: calc(50% - 1.5rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--dark-bg);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog-hero p {
+                font-size: 1.1rem;
+            }
+
+            .trend-card {
+                padding: 2rem;
+            }
+
+            .trend-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-radius: 50px;
+                margin-bottom: 1rem;
+            }
+
+            .newsletter-form button {
+                border-radius: 50px;
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .trend-card {
+                padding: 1.5rem;
+            }
+
+            .bonus-topic {
+                width: 100%;
+            }
+
+            .newsletter h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Hamburger Menu -->
+    <header>
+        <div class="header-container">
+            <a href="https://stanleymakanga.vercel.app" class="logo">Stanley <span>Makanga</span></a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="https://stanleymakanga.vercel.app">Home</a></li>
+                    <li><a href="about">About Me</a></li>
+                    <li><a href="skills">Skills</a></li>
+                    <li><a href="achievements">Achievements</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="services">Services</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="hero-content">
+            <h1>Emerging Trends in Cryptocurrency for 2024</h1>
+            <div class="meta-info">
+                <span><i class="fas fa-user"></i> Stanley Makanga</span>
+                <span><i class="far fa-calendar-alt"></i> March 15, 2025</span>
+                <span><i class="fas fa-tag"></i> Crypto</span>
+            </div>
+            <p>An in-depth analysis of the most promising cryptocurrency trends and investment opportunities this year.</p>
+            <a href="#trends" class="cta-button">Explore Trends</a>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="blog-container" id="trends">
+        <!-- Trend 1 -->
+        <article class="trend-card">
+            <div class="trend-number">1</div>
+            <h2>Bitcoin ETFs and Institutional Inflow</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> The U.S. approval of spot Bitcoin ETFs has unlocked massive institutional participation.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Explore how ETFs from BlackRock, Fidelity, etc., have legitimized Bitcoin for hedge funds and pension funds. Discuss the price impact, regulatory ripple effects, and projected BTC demand.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>Long-term Bitcoin holding</li>
+                        <li>ETF-related stocks</li>
+                        <li>Custody service providers</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 2 -->
+        <article class="trend-card">
+            <div class="trend-number">2</div>
+            <h2>Real World Asset (RWA) Tokenization</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Tokenizing tangible assets like real estate, commodities, art, and treasury bonds on blockchain is booming.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Break down how RWAs bridge TradFi and DeFi, and analyze platforms like Centrifuge, Ondo Finance, and Polymesh. Include use cases and revenue models.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>RWA tokens</li>
+                        <li>DeFi protocols integrating real-world assets</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 3 -->
+        <article class="trend-card">
+            <div class="trend-number">3</div>
+            <h2>Layer 2 Networks Dominating Ethereum Scaling</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Rollups like Arbitrum, Optimism, and zkSync are addressing Ethereum's scalability bottleneck.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Compare optimistic vs. zero-knowledge rollups. Dive into EIP-4844 (proto-danksharding) and how it will reduce Layer 2 gas fees.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>Layer 2 tokens</li>
+                        <li>Infrastructure protocols</li>
+                        <li>Bridges or dApps launching exclusively on L2s</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 4 -->
+        <article class="trend-card">
+            <div class="trend-number">4</div>
+            <h2>AI x Crypto Fusion</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Crypto projects are integrating Artificial Intelligence for trading bots, data prediction, and decentralized AI compute markets.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Highlight projects like Fetch.ai, Ocean Protocol, and Bittensor. Explain how decentralized AI marketplaces are disrupting centralized AI cloud models.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>AI-integrated tokens</li>
+                        <li>Decentralized compute/storage infrastructure</li>
+                        <li>Oracles</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 5 -->
+        <article class="trend-card">
+            <div class="trend-number">5</div>
+            <h2>DePIN – Decentralized Physical Infrastructure Networks</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Projects like Helium and Render are tokenizing real-world infrastructure (e.g., wireless networks, GPU compute).</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Examine how DePIN flips the model for infrastructure investment. Analyze tokenomics, incentive models, and scalability.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>Early-stage DePIN tokens</li>
+                        <li>DAO involvement</li>
+                        <li>Data economy plays</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 6 -->
+        <article class="trend-card">
+            <div class="trend-number">6</div>
+            <h2>Modular Blockchains</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Unlike monolithic chains like Ethereum, modular chains separate consensus, execution, and data availability (e.g., Celestia, Avail).</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Explain the difference between modular vs. monolithic architecture and how it enables specialized blockchains to scale better.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>Modular Layer 1s</li>
+                        <li>Data availability layers</li>
+                        <li>Rollup-as-a-service protocols</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 7 -->
+        <article class="trend-card">
+            <div class="trend-number">7</div>
+            <h2>Restaking & Liquid Staking Derivatives (LSDs)</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Restaking protocols like EigenLayer let users reuse their staked ETH to secure multiple networks.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Dive into how restaking improves capital efficiency. Cover risks (slashing) and the "security as a service" model.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>ETH LSDs (e.g., Lido, Rocket Pool)</li>
+                        <li>Restaking platforms</li>
+                        <li>Governance tokens</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 8 -->
+        <article class="trend-card">
+            <div class="trend-number">8</div>
+            <h2>Stablecoins 2.0</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Beyond USDT and USDC, a new generation of algorithmic and real-world asset-backed stablecoins is rising.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Compare innovations like PayPal USD, Frax, and Ethena's USDe. Focus on decentralization, transparency, and use in global remittances.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>Yield protocols integrating next-gen stablecoins</li>
+                        <li>Stablecoin arbitrage</li>
+                        <li>DeFi lending/borrowing</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 9 -->
+        <article class="trend-card">
+            <div class="trend-number">9</div>
+            <h2>GameFi Renaissance & AI-powered Game Economies</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> After a quiet 2023, GameFi is bouncing back with better tokenomics, play-and-earn mechanics, and integration with AI for NPCs and economy balancing.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Review projects like Shrapnel, Big Time, and AI Arena. Address sustainable game economies and immersive metaverses.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>GameFi tokens</li>
+                        <li>In-game asset flipping</li>
+                        <li>Virtual land speculation</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Trend 10 -->
+        <article class="trend-card">
+            <div class="trend-number">10</div>
+            <h2>Regenerative Finance (ReFi) and Sustainable Blockchains</h2>
+            <div class="trend-overview">
+                <p><strong>Overview:</strong> Blockchain meets climate action via carbon credits, green DAOs, and sustainable protocols.</p>
+            </div>
+            <div class="trend-content">
+                <h3>Article Angle</h3>
+                <p>Introduce ReFi projects like KlimaDAO and Toucan. Analyze how crypto can incentivize real-world ecological change.</p>
+                
+                <h3>Investment Opportunity</h3>
+                <div class="investment-opportunity">
+                    <h4><i class="fas fa-chart-line"></i> Where to Invest</h4>
+                    <ul>
+                        <li>ReFi tokens</li>
+                        <li>Environmental impact DAOs</li>
+                        <li>Green staking</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Bonus Section -->
+        <section class="bonus-section">
+            <h2>🧠 Bonus Topics for Thought Leadership</h2>
+            <div class="bonus-topics">
+                <div class="bonus-topic">
+                    <h3><i class="fas fa-fingerprint"></i> Decentralized Identity (DID)</h3>
+                    <p>The building blocks for Web3 user verification and KYC alternatives.</p>
+                </div>
+                <div class="bonus-topic">
+                    <h3><i class="fas fa-landmark"></i> CBDCs vs. Crypto</h3>
+                    <p>The geopolitical implications of central bank digital currencies clashing with decentralized finance.</p>
+                </div>
+                <div class="bonus-topic">
+                    <h3><i class="fas fa-user-secret"></i> Privacy Tokens</h3>
+                    <p>The comeback of Monero and Zcash amid tightening regulation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h2>Stay Updated on Crypto Trends</h2>
+            <p>Subscribe to my newsletter for weekly insights on cryptocurrency, blockchain technology, and investment opportunities.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://stanleymakanga.vercel.app">Home</a>
+                <a href="about">About Me</a>
+                <a href="skills">Skills</a>
+                <a href="contact">Contact</a>
+                <a href="services">services</a>
+                <a href="achievements">Achievements</a>
+                <a href="faq">FAQ</a>
+            </div>
+            <div class="social-footer">
+                <a href="https://x.com/stanleymakanga2"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/stanley-makanga-974393349"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/stanley.makanga/"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/its.stano"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Stanley Makanga. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking on a link (for mobile)
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Scroll Animation
+        const trendCards = document.querySelectorAll('.trend-card');
+        const bonusSection = document.querySelector('.bonus-section');
+        const newsletter = document.querySelector('.newsletter');
+
+        const checkVisibility = () => {
+            // Trend cards animation
+            trendCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+
+            // Bonus section animation
+            const bonusTop = bonusSection.getBoundingClientRect().top;
+            if (bonusTop < window.innerHeight - 100) {
+                bonusSection.classList.add('visible');
+            }
+
+            // Newsletter animation
+            const newsletterTop = newsletter.getBoundingClientRect().top;
+            if (newsletterTop < window.innerHeight - 100) {
+                newsletter.classList.add('visible');
+            }
+        };
+
+        // Check visibility on load and scroll
+        window.addEventListener('load', checkVisibility);
+        window.addEventListener('scroll', checkVisibility);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
