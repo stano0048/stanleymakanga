@@ -6,66 +6,76 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
 <url>
   <loc>https://stanleymakanga.vercel.app/</loc>
-  <lastmod>2025-03-30T09:27:33+00:00</lastmod>
-  <priority>1.00</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>1.0</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/about</loc>
-  <lastmod>2025-03-30T09:27:34+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/skills</loc>
-  <lastmod>2025-03-30T09:27:34+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/blog</loc>
-  <lastmod>2025-03-30T09:27:34+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/contact</loc>
-  <lastmod>2025-03-30T09:27:34+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/services</loc>
-  <lastmod>2025-03-30T09:27:35+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/achievements</loc>
-  <lastmod>2025-03-30T09:27:36+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/faq</loc>
-  <lastmod>2025-03-30T09:27:36+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.8</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/privacy</loc>
-  <lastmod>2025-03-30T09:27:36+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/ethical-hacking</loc>
-  <lastmod>2025-03-30T09:27:36+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/robotics</loc>
-  <lastmod>2025-03-30T09:27:37+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
 </url>
 <url>
   <loc>https://stanleymakanga.vercel.app/mastering-javascript</loc>
-  <lastmod>2025-03-30T09:27:37+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2025-03-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
 </url>
-
 </urlset>
